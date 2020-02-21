@@ -12,4 +12,4 @@ logging:
     cn.tsxygfy.blog.*: info
   file: ./log/beyond-log.log
 server:
-  port: 8080
+  port: 8888

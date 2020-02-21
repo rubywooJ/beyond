@@ -3,6 +3,7 @@ package cn.tsxygfy.blog.service.impl;
 import cn.tsxygfy.blog.mapper.InfoMapper;
 import cn.tsxygfy.blog.model.po.Info;
 import cn.tsxygfy.blog.service.OptionService;
+import cn.tsxygfy.blog.util.IpUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
@@ -36,17 +37,16 @@ public class OptionServiceImpl implements OptionService {
     @Override
     public String getBlogBaseUrl() {
         String serverPort = applicationContext.getEnvironment().getProperty("server.port", "8080");
-        // TODO 添加 baseURL
-        String address = ""; //公网ip
+        String address = "beyond.tsxygfy.cn";
 
-        String baseUrl = String.format("http://%s:%s", "localhost", serverPort);
+        String baseUrl = String.format("http://%s:%s", IpUtil.getMachineIp(), serverPort);
 
         return baseUrl;
     }
 
     @Override
     public Map<String, Object> listOptions() {
-        Map<String, Object> result = new HashMap<>();
+        Map<String, Object> result = new HashMap<>(3);
         List<Info> infos = infoMapper.selectAll();
         if(!CollectionUtils.isEmpty(infos)){
             Info info = infos.get(0);
