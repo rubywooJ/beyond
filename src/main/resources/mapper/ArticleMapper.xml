@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.tsxygfy.blog.mapper.ArticleMapper">
+  <resultMap id="BaseResultMap" type="cn.tsxygfy.blog.model.po.Article">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="cover" jdbcType="VARCHAR" property="cover" />
+    <result column="author" jdbcType="VARCHAR" property="author" />
+    <result column="origin" jdbcType="VARCHAR" property="origin" />
+    <result column="state" jdbcType="VARCHAR" property="state" />
+    <result column="views" jdbcType="BIGINT" property="views" />
+    <result column="edit_time" jdbcType="BIGINT" property="editTime" />
+    <result column="create_time" jdbcType="BIGINT" property="createTime" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="summary" jdbcType="VARCHAR" property="summary"/>
+    <result column="content" jdbcType="LONGVARCHAR" property="content" />
+    <result column="content_md" jdbcType="LONGVARCHAR" property="contentMd" />
+  </resultMap>
+
+  <resultMap id="WithTagResultMap" type="cn.tsxygfy.blog.model.vo.ArticleTagsVO" extends="BaseResultMap">
+    <collection property="tags" ofType="cn.tsxygfy.blog.model.po.Tag">
+      <id property="id" column="t_id"></id>
+      <result property="name" column="t_name"></result>
+    </collection>
+  </resultMap>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from tb_article
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="cn.tsxygfy.blog.model.po.Article">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+      insert into tb_article (title, cover, author,
+      origin, state, views, 
+      edit_time, create_time, type, summary,
+      content, content_md)
+    values (#{title,jdbcType=VARCHAR}, #{cover,jdbcType=VARCHAR}, #{author,jdbcType=VARCHAR}, 
+      #{origin,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, #{views,jdbcType=BIGINT}, 
+      #{editTime,jdbcType=BIGINT}, #{createTime,jdbcType=BIGINT}, #{type,jdbcType=INTEGER},
+      #{summary,jdbcType=VARCHAR}, #{content,jdbcType=LONGVARCHAR},
+       #{contentMd,jdbcType=LONGVARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="cn.tsxygfy.blog.model.po.Article">
+    update tb_article
+    set title = #{title,jdbcType=VARCHAR},
+      cover = #{cover,jdbcType=VARCHAR},
+      author = #{author,jdbcType=VARCHAR},
+      origin = #{origin,jdbcType=VARCHAR},
+      state = #{state,jdbcType=VARCHAR},
+      views = #{views,jdbcType=BIGINT},
+      edit_time = #{editTime,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=BIGINT},
+      type = #{type,jdbcType=INTEGER},
+      summary = #{summary,jdbcType=VARCHAR},
+      content = #{content,jdbcType=LONGVARCHAR},
+      content_md = #{contentMd,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select id, title, cover, author, origin, state, views, edit_time, create_time, type, summary,
+    content, content_md
+    from tb_article
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, title, cover, author, origin, state, views, edit_time, create_time, type, summary,
+    content, content_md
+    from tb_article
+    order by create_time desc
+  </select>
+
+
+  <select id="selectAllWithTags" resultMap="WithTagResultMap">
+    <!--等值连接-->
+   <!-- select a.id, title, cover, author, origin, state, views, edit_time, create_time, type,
+    content, content_md, t.name tags
+    from tb_article a, tb_tag t, tb_article_tags ats
+    where a.id=ats.article_id and ats.tag_id = t.id-->
+
+    <!-- 左连接-->
+    select a.id, title, cover, author, origin, state, views, edit_time, create_time, type, summary,
+    content, content_md, t.id t_id, t.name t_name
+      from tb_article a
+    left join tb_article_tags ats on a.id = ats.article_id
+    left join tb_tag t on t.id = ats.tag_id
+  </select>
+  <select id="selectArticleByTitle" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select id, title, cover, author, origin, state, views, edit_time, create_time, type, summary,
+    content, content_md
+    from tb_article
+    where title=#{title,jdbcType=VARCHAR}
+  </select>
+  <select id="selectArticleYear" resultMap="BaseResultMap">
+    select id, title, cover, author, origin, state, views, edit_time, create_time, type, summary,
+    content, content_md
+    from tb_article
+    order by create_time desc
+  </select>
+  <select id="selectArticleByTagName" parameterType="java.lang.String"
+          resultType="cn.tsxygfy.blog.model.vo.TagArticlesVO">
+    select ta.id, ta.title, ta.create_time createTime
+    from tb_tag tt, tb_article ta, tb_article_tags tat
+    where tt.name = #{name,jdbcType=VARCHAR} and tt.id = tat.tag_id and tat.article_id = ta.id
+  </select>
+</mapper>

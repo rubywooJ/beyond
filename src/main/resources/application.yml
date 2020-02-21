@@ -1,0 +1,19 @@
+spring:
+  profiles:
+    active: dev
+  freemarker:
+    check-template-location: true
+  mvc:
+    favicon:
+      enabled: false
+
+mybatis:
+  type-aliases-package: cn.tsxygfy.blog.po
+  mapper-locations: classpath:mapper/*.xml
+
+#pagehelper分页插件配置
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql

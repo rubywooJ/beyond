@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.tsxygfy.blog.mapper.TagMapper">
+  <resultMap id="BaseResultMap" type="cn.tsxygfy.blog.model.po.Tag">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from tb_tag
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="cn.tsxygfy.blog.model.po.Tag">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+      insert into tb_tag (name)
+    values (#{name,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="cn.tsxygfy.blog.model.po.Tag">
+    update tb_tag
+    set name = #{name,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select id, name
+    from tb_tag
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, name
+    from tb_tag
+  </select>
+  <select id="selectByArticleId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select tb_tag.id, name
+    from tb_tag, tb_article_tags
+    where article_id=#{id,jdbcType=BIGINT} and tag_id = tb_tag.id
+  </select>
+  <select id="selectAllWithArticleCount" resultType="cn.tsxygfy.blog.model.vo.TagsVO">
+    select tt.id, name, count(article_id) articleCount
+    from tb_tag tt
+    left join tb_article_tags tat on tt.id=tat.tag_id
+    group by name, tt.id
+    order by tt.id desc
+  </select>
+  <select id="selectByName" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select id, name from tb_tag where name=#{name,jdbcType=VARCHAR}
+  </select>
+</mapper>

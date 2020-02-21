@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.tsxygfy.blog.mapper.UserMapper">
+    <resultMap id="BaseResultMap" type="cn.tsxygfy.blog.model.po.User">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="username" jdbcType="VARCHAR" property="username"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
+        <result column="salt" jdbcType="VARCHAR" property="salt"/>
+        <result column="avatar" jdbcType="VARCHAR" property="avatar"/>
+        <result column="introduce" jdbcType="VARCHAR" property="introduce"/>
+        <result column="remark" jdbcType="VARCHAR" property="remark"/>
+        <result column="nickname" jdbcType="VARCHAR" property="nickname"/>
+        <result column="email" jdbcType="VARCHAR" property="email"/>
+    </resultMap>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from tb_user
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+    <insert id="insert" parameterType="cn.tsxygfy.blog.model.po.User">
+        <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into tb_user (username, password, salt,
+        avatar, introduce, remark,
+        nickname, email)
+        values (#{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{salt,jdbcType=VARCHAR},
+        #{avatar,jdbcType=VARCHAR}, #{introduce,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR},
+        #{nickname,jdbcType=VARCHAR}), #{email, jdbcType=VARCHAR}
+    </insert>
+    <update id="updateByPrimaryKey" parameterType="cn.tsxygfy.blog.model.po.User">
+    update tb_user
+    set username = #{username,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      salt = #{salt,jdbcType=VARCHAR},
+      avatar = #{avatar,jdbcType=VARCHAR},
+      introduce = #{introduce,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      nickname = #{nickname,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select id, username, password, salt, avatar, introduce, remark, nickname, email
+    from tb_user
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+    <select id="selectAll" resultMap="BaseResultMap">
+    select id, username, password, salt, avatar, introduce, remark, nickname, email
+    from tb_user
+  </select>
+    <select id="selectByUserName" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select id, username, password, salt, avatar, introduce, remark, nickname, email
+    from tb_user
+    where username = #{username, jdbcType=VARCHAR}
+  </select>
+    <select id="selectByEmail" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select id, username, password, salt, avatar, introduce, remark, nickname, email
+    from tb_user
+    where  = #{username, jdbcType=VARCHAR}
+  </select>
+</mapper>
