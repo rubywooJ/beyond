@@ -7,11 +7,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * @author feiyang
- * @version v1.0
- * @className ErrorPageController
- * @description
- * @date 2020/02/02 周日 21:46
+ *
+ * <p>
+ * Description: ErrorPageController
+ * </p>
+ *
+ * @author ruby woo
+ * @version v1.0.0
+ * @since 2020-02-21 14:59:27
+ * @see cn.tsxygfy.blog.controller
+ *
  */
 @Controller
 public class ErrorPageController extends BaseController implements ErrorController {

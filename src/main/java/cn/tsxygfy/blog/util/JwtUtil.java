@@ -12,11 +12,16 @@ import org.springframework.stereotype.Component;
 import java.util.Date;
 
 /**
- * @author feiyang
- * @version v1.0
- * @className JwtUtils
- * @description
- * @date 2020/01/05 周日 18:36
+ *
+ * <p>
+ * Description:
+ * </p>
+ *
+ * @author ruby woo
+ * @version v1.0.0
+ * @since 2020-02-21 15:06:42
+ * @see cn.tsxygfy.blog.util
+ *
  */
 @Slf4j
 @Component

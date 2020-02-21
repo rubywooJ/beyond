@@ -1,24 +1,29 @@
 package cn.tsxygfy.blog.core;
 
-import cn.tsxygfy.blog.exception.BeyondException;
+import cn.tsxygfy.blog.exception.BaseException;
 import cn.tsxygfy.blog.model.dto.BaseResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 /**
- * @author feiyang
- * @version v1.0
- * @className ControllerExceptionHandler
- * @description
- * @date 2020/02/10 周一 17:05
+ *
+ * <p>
+ * Description:
+ * </p>
+ *
+ * @author ruby woo
+ * @version v1.0.0
+ * @since 2020-02-21 15:00:26
+ * @see cn.tsxygfy.blog.core
+ *
  */
 @ControllerAdvice(basePackages = "cn.tsxygfy.blog.controller.admin")
 public class ControllerExceptionHandler {
 
 
-    @ExceptionHandler(BeyondException.class)
-    public ResponseEntity<BaseResponse> handleBeyondException(BeyondException e) {
+    @ExceptionHandler(BaseException.class)
+    public ResponseEntity<BaseResponse> handleBeyondException(BaseException e) {
         BaseResponse<Object> baseResponse = handleBaseException(e);
         baseResponse.setStatus(e.getStatus().value());
         baseResponse.setData(e.getErrorData());

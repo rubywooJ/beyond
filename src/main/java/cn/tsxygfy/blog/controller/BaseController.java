@@ -3,11 +3,16 @@ package cn.tsxygfy.blog.controller;
 import cn.tsxygfy.blog.core.BeyondConst;
 
 /**
- * @author feiyang
- * @version v1.0
- * @className BaseController
- * @description
- * @date 2020/01/30 周四 21:58
+ *
+ * <p>
+ * Description: BaseController
+ * </p>
+ *
+ * @author ruby woo
+ * @version v1.0.0
+ * @since 2020-02-21 14:59:05
+ * @see cn.tsxygfy.blog.controller
+ *
  */
 public class BaseController {
     final String THEME_DIR = BeyondConst.DEFAULT_THEME_ID + "/";

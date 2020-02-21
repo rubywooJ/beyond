@@ -5,11 +5,16 @@ import org.springframework.http.HttpStatus;
 import org.springframework.lang.Nullable;
 
 /**
- * @author feiyang
- * @version v1.0
- * @className BaseResponse
- * @description copy form Hole https://github.com/halo-dev/halo
- * @date 2020/02/09 周日 20:12
+ *
+ * <p>
+ * Description:
+ * </p>
+ *
+ * @author ruby woo
+ * @version v1.0.0
+ * @since 2020-02-21 15:02:44
+ * @see cn.tsxygfy.blog.model.dto
+ *
  */
 @Data
 @ToString

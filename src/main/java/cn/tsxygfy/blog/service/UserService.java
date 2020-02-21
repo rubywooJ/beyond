@@ -5,11 +5,16 @@ import cn.tsxygfy.blog.model.po.User;
 import java.util.Optional;
 
 /**
- * @author feiyang
- * @version v1.0
- * @interfaceName UserService
- * @description
- * @date 2020/01/30 周四 23:03
+ *
+ * <p>
+ * Description:
+ * </p>
+ *
+ * @author ruby woo
+ * @version v1.0.0
+ * @since 2020-02-21 15:05:49
+ * @see cn.tsxygfy.blog.service
+ *
  */
 public interface UserService {
 

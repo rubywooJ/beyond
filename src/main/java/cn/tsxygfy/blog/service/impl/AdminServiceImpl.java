@@ -14,11 +14,16 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
 /**
- * @author feiyang
- * @version v1.0
- * @className AdminServiceImpl
- * @description
- * @date 2020/02/09 周日 15:36
+ *
+ * <p>
+ * Description:
+ * </p>
+ *
+ * @author ruby woo
+ * @version v1.0.0
+ * @since 2020-02-21 15:04:18
+ * @see cn.tsxygfy.blog.service.impl
+ *
  */
 @Slf4j
 @Service

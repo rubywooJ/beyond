@@ -3,11 +3,16 @@ package cn.tsxygfy.blog.service;
 import java.util.Map;
 
 /**
- * @author feiyang
- * @version v1.0
- * @className OptionService
- * @description
- * @date 2020/01/30 周四 23:02
+ *
+ * <p>
+ * Description:
+ * </p>
+ *
+ * @author ruby woo
+ * @version v1.0.0
+ * @since 2020-02-21 15:05:31
+ * @see cn.tsxygfy.blog.service
+ *
  */
 public interface OptionService {
 

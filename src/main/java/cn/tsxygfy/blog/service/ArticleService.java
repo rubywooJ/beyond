@@ -8,11 +8,16 @@ import cn.tsxygfy.blog.model.vo.ArticleYearVO;
 import java.util.List;
 
 /**
- * @author feiyang
- * @version v1.0
- * @interfaceName ArticleService
- * @description
- * @date 2020/01/31 周五 20:55
+ *
+ * <p>
+ * Description:
+ * </p>
+ *
+ * @author ruby woo
+ * @version v1.0.0
+ * @since 2020-02-21 15:05:14
+ * @see cn.tsxygfy.blog.service
+ *
  */
 public interface ArticleService {
 

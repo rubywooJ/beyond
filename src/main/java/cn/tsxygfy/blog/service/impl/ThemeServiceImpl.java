@@ -5,11 +5,16 @@ import cn.tsxygfy.blog.service.ThemeService;
 import org.springframework.stereotype.Service;
 
 /**
- * @author feiyang
- * @version v1.0
- * @className ThemeServiceImpl
- * @description
- * @date 2020/01/30 周四 23:04
+ *
+ * <p>
+ * Description:
+ * </p>
+ *
+ * @author ruby woo
+ * @version v1.0.0
+ * @since 2020-02-21 15:04:54
+ * @see cn.tsxygfy.blog.service.impl
+ *
  */
 @Service
 public class ThemeServiceImpl implements ThemeService {

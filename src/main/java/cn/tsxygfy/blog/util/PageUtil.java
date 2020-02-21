@@ -4,11 +4,16 @@ import cn.tsxygfy.blog.model.dto.PageResult;
 import com.github.pagehelper.PageInfo;
 
 /**
- * @author feiyang
- * @version v1.0
- * @className PageUtil
- * @description
- * @date 2020/02/01 周六 20:04
+ *
+ * <p>
+ * Description:
+ * </p>
+ *
+ * @author ruby woo
+ * @version v1.0.0
+ * @since 2020-02-21 15:06:48
+ * @see cn.tsxygfy.blog.util
+ *
  */
 public class PageUtil {
 

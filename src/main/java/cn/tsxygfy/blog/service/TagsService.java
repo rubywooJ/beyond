@@ -7,11 +7,16 @@ import cn.tsxygfy.blog.model.vo.TagsVO;
 import java.util.List;
 
 /**
- * @author feiyang
- * @version v1.0
- * @className TagsService
- * @description
- * @date 2020/02/04 周二 18:19
+ *
+ * <p>
+ * Description:
+ * </p>
+ *
+ * @author ruby woo
+ * @version v1.0.0
+ * @since 2020-02-21 15:05:37
+ * @see cn.tsxygfy.blog.service
+ *
  */
 public interface TagsService {
 

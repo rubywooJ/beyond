@@ -17,11 +17,16 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 /**
- * @author feiyang
- * @version v1.0
- * @className JwtInterceptor
- * @description
- * @date 2020/01/05 周日 19:35
+ *
+ * <p>
+ * Description:
+ * </p>
+ *
+ * @author ruby woo
+ * @version v1.0.0
+ * @since 2020-02-21 15:02:12
+ * @see cn.tsxygfy.blog.interceptor
+ *
  */
 @Component
 public class JwtInterceptor extends HandlerInterceptorAdapter {

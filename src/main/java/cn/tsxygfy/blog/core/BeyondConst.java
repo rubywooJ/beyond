@@ -6,11 +6,16 @@ import java.io.File;
 import java.time.Duration;
 
 /**
- * @author feiyang
- * @version v1.0
- * @className BeyondConst
- * @description
- * @date 2020/01/07 周二 15:09
+ *
+ * <p>
+ * Description:
+ * </p>
+ *
+ * @author ruby woo
+ * @version v1.0.0
+ * @since 2020-02-21 15:00:15
+ * @see cn.tsxygfy.blog.core
+ *
  */
 public class BeyondConst {
     /**

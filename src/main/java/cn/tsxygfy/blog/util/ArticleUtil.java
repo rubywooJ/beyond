@@ -2,6 +2,16 @@ package cn.tsxygfy.blog.util;
 
 import org.springframework.util.StringUtils;
 
+/**
+ * <p>
+ * Description:
+ * </p>
+ *
+ * @author ruby woo
+ * @version v1.0.0
+ * @see cn.tsxygfy.blog.util
+ * @since 2020-02-21 15:06:01
+ */
 public class ArticleUtil {
 
     /**
@@ -10,7 +20,7 @@ public class ArticleUtil {
      * @param length 摘要字数
      * @return 摘要
      */
-    public static String parseHtml(String html,int length) {
+    public static String parseHtml(String html, int length) {
 
         if (StringUtils.isEmpty(html)) {
             return html = "空";

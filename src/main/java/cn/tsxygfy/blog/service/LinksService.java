@@ -5,11 +5,16 @@ import cn.tsxygfy.blog.model.vo.LinkTeamVO;
 import java.util.List;
 
 /**
- * @author feiyang
- * @version v1.0
- * @interfaceName LinksService
- * @description
- * @date 2020/02/04 周二 20:36
+ *
+ * <p>
+ * Description:
+ * </p>
+ *
+ * @author ruby woo
+ * @version v1.0.0
+ * @since 2020-02-21 15:05:23
+ * @see cn.tsxygfy.blog.service
+ *
  */
 public interface LinksService {
 

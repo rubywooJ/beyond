@@ -18,11 +18,16 @@ import org.springframework.stereotype.Service;
 import java.util.*;
 
 /**
- * @author feiyang
- * @version v1.0
- * @className ArticleServiceImpl
- * @description
- * @date 2020/01/31 周五 20:55
+ *
+ * <p>
+ * Description:
+ * </p>
+ *
+ * @author ruby woo
+ * @version v1.0.0
+ * @since 2020-02-21 15:04:24
+ * @see cn.tsxygfy.blog.service.impl
+ *
  */
 @Service
 public class ArticleServiceImpl implements ArticleService {

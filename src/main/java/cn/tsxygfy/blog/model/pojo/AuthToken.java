@@ -4,11 +4,16 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 /**
- * @author feiyang
- * @version v1.0
- * @className AuthToken
- * @description
- * @date 2020/02/09 周日 20:36
+ *
+ * <p>
+ * Description:
+ * </p>
+ *
+ * @author ruby woo
+ * @version v1.0.0
+ * @since 2020-02-21 15:03:09
+ * @see cn.tsxygfy.blog.model.pojo
+ *
  */
 @Data
 public class AuthToken {

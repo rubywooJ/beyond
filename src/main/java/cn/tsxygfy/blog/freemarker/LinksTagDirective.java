@@ -10,11 +10,16 @@ import java.io.IOException;
 import java.util.Map;
 
 /**
- * @author feiyang
- * @version v1.0
- * @className LinksTagDirective
- * @description
- * @date 2020/02/04 周二 20:35
+ *
+ * <p>
+ * Description:
+ * </p>
+ *
+ * @author ruby woo
+ * @version v1.0.0
+ * @since 2020-02-21 15:01:47
+ * @see cn.tsxygfy.blog.freemarker
+ *
  */
 @Component
 public class LinksTagDirective implements TemplateDirectiveModel {

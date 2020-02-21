@@ -11,11 +11,16 @@ import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 
 /**
- * @author feiyang
- * @version v1.0
- * @className StartedListener
- * @description
- * @date 2020/01/07 周二 14:50
+ *
+ * <p>
+ * Description:
+ * </p>
+ *
+ * @author ruby woo
+ * @version v1.0.0
+ * @since 2020-02-21 15:02:31
+ * @see cn.tsxygfy.blog.listener
+ *
  */
 @Slf4j
 @Configuration

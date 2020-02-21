@@ -3,11 +3,16 @@ package cn.tsxygfy.blog.model.dto;
 import java.util.List;
 
 /**
- * @author feiyang
- * @version v1.0
- * @className PageResult
- * @description
- * @date 2020/02/01 周六 19:58
+ *
+ * <p>
+ * Description:
+ * </p>
+ *
+ * @author ruby woo
+ * @version v1.0.0
+ * @since 2020-02-21 15:03:00
+ * @see cn.tsxygfy.blog.model.dto
+ *
  */
 public class PageResult {
     /**

@@ -13,11 +13,16 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * @author feiyang
- * @version v1.0
- * @className UserServiceImpl
- * @description
- * @date 2020/01/30 周四 23:03
+ *
+ * <p>
+ * Description:
+ * </p>
+ *
+ * @author ruby woo
+ * @version v1.0.0
+ * @since 2020-02-21 15:05:01
+ * @see cn.tsxygfy.blog.service.impl
+ *
  */
 @Service
 public class UserServiceImpl implements UserService {

@@ -15,11 +15,16 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 /**
- * @author feiyang
- * @version v1.0
- * @className TagsController
- * @description
- * @date 2020/02/04 周二 18:16
+ *
+ * <p>
+ * Description:
+ * </p>
+ *
+ * @author ruby woo
+ * @version v1.0.0
+ * @since 2020-02-21 15:00:02
+ * @see cn.tsxygfy.blog.controller
+ *
  */
 @Controller
 @RequestMapping("/tags")

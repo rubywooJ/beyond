@@ -3,21 +3,26 @@ package cn.tsxygfy.blog.exception;
 import org.springframework.http.HttpStatus;
 
 /**
- * @author feiyang
- * @version v1.0
- * @className BeyondException
- * @description
- * @date 2020/02/09 周日 15:44
+ *
+ * <p>
+ * Description:
+ * </p>
+ *
+ * @author ruby woo
+ * @version v1.0.0
+ * @since 2020-02-21 15:01:03
+ * @see cn.tsxygfy.blog.exception
+ *
  */
-public abstract class BeyondException extends RuntimeException {
+public abstract class BaseException extends RuntimeException {
 
     private Object errorData;
 
-    public BeyondException(String message) {
+    public BaseException(String message) {
         super(message);
     }
 
-    public BeyondException(String message, Throwable cause) {
+    public BaseException(String message, Throwable cause) {
         super(message, cause);
     }
 
@@ -27,7 +32,7 @@ public abstract class BeyondException extends RuntimeException {
         return this.errorData;
     }
 
-    public BeyondException setErrorData(Object errorData) {
+    public BaseException setErrorData(Object errorData) {
         this.errorData = errorData;
         return this;
     }

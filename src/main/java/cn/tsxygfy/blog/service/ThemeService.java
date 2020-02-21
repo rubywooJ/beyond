@@ -3,11 +3,16 @@ package cn.tsxygfy.blog.service;
 import cn.tsxygfy.blog.properties.ThemeProperty;
 
 /**
- * @author feiyang
- * @version v1.0
- * @interfaceName ThemeService
- * @description
- * @date 2020/01/30 周四 23:03
+ *
+ * <p>
+ * Description:
+ * </p>
+ *
+ * @author ruby woo
+ * @version v1.0.0
+ * @since 2020-02-21 15:05:43
+ * @see cn.tsxygfy.blog.service
+ *
  */
 public interface ThemeService {
     ThemeProperty getActivatedTheme();

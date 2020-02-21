@@ -7,11 +7,16 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
 /**
- * @author feiyang
- * @version v1.0
- * @className Application
- * @description Beyond Run. And enjoy it.
- * @date 2020/02/10 周一 17:16
+ *
+ * <p>
+ * Description: Beyond run and enjoy it.
+ * </p>
+ *
+ * @author ruby woo
+ * @version v1.0.0
+ * @since 2020-02-21 14:56:50
+ * @see cn.tsxygfy.blog
+ *
  */
 @MapperScan(basePackages = "cn.tsxygfy.blog.mapper")
 @SpringBootApplication

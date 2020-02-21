@@ -6,6 +6,16 @@ import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
+/**
+ * <p>
+ * Description:
+ * </p>
+ *
+ * @author ruby woo
+ * @version v1.0.0
+ * @see cn.tsxygfy.blog.properties
+ * @since 2020-02-21 15:04:00
+ */
 @Getter
 @Setter
 @Configuration

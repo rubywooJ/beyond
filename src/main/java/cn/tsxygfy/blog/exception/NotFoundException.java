@@ -3,13 +3,18 @@ package cn.tsxygfy.blog.exception;
 import org.springframework.http.HttpStatus;
 
 /**
- * @author feiyang
- * @version v1.0
- * @className NotFoundException
- * @description
- * @date 2020/02/09 周日 15:48
+ *
+ * <p>
+ * Description:
+ * </p>
+ *
+ * @author ruby woo
+ * @version v1.0.0
+ * @since 2020-02-21 15:00:55
+ * @see cn.tsxygfy.blog.exception
+ *
  */
-public class NotFoundException extends BeyondException {
+public class NotFoundException extends BaseException {
 
     public NotFoundException(String message) {
         super(message);

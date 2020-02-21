@@ -3,6 +3,16 @@ package cn.tsxygfy.blog.model.pojo;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * <p>
+ * Description:
+ * </p>
+ *
+ * @author ruby woo
+ * @version v1.0.0
+ * @see cn.tsxygfy.blog.model.pojo
+ * @since 2020-02-21 15:03:20
+ */
 @Getter
 @Setter
 public class BlogInfo {

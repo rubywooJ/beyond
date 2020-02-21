@@ -4,11 +4,16 @@ import cn.tsxygfy.blog.model.dto.LoginParam;
 import cn.tsxygfy.blog.model.pojo.AuthToken;
 
 /**
- * @author feiyang
- * @version v1.0
- * @className AdminService
- * @description
- * @date 2020/02/09 周日 15:36
+ *
+ * <p>
+ * Description:
+ * </p>
+ *
+ * @author ruby woo
+ * @version v1.0.0
+ * @since 2020-02-21 15:05:07
+ * @see cn.tsxygfy.blog.service
+ *
  */
 public interface AdminService {
     AuthToken authenticate(LoginParam loginParam);

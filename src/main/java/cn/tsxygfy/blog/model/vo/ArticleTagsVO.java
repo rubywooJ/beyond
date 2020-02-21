@@ -8,11 +8,16 @@ import lombok.Setter;
 import java.util.List;
 
 /**
- * @author feiyang
- * @version v1.0
- * @className ArticleTagsVo
- * @description
- * @date 2020/01/31 周五 21:42
+ *
+ * <p>
+ * Description:
+ * </p>
+ *
+ * @author ruby woo
+ * @version v1.0.0
+ * @since 2020-02-21 15:03:29
+ * @see cn.tsxygfy.blog.model.vo
+ *
  */
 @Getter
 @Setter

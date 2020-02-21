@@ -1,11 +1,16 @@
 package cn.tsxygfy.blog.util;
 
 /**
- * @author feiyang
- * @version v1.0
- * @className EmailUtil
- * @description
- * @date 2020/02/09 周日 16:33
+ *
+ * <p>
+ * Description:
+ * </p>
+ *
+ * @author ruby woo
+ * @version v1.0.0
+ * @since 2020-02-21 15:06:22
+ * @see cn.tsxygfy.blog.util
+ *
  */
 public class EmailUtil {
 

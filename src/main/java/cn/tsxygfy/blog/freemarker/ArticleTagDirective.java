@@ -10,11 +10,16 @@ import java.io.IOException;
 import java.util.Map;
 
 /**
- * @author feiyang
- * @version v1.0
- * @className ArticleTagDirective
- * @description
- * @date 2020/02/03 周一 20:14
+ *
+ * <p>
+ * Description:
+ * </p>
+ *
+ * @author ruby woo
+ * @version v1.0.0
+ * @since 2020-02-21 15:01:56
+ * @see cn.tsxygfy.blog.freemarker
+ *
  */
 @Component
 public class ArticleTagDirective implements TemplateDirectiveModel {

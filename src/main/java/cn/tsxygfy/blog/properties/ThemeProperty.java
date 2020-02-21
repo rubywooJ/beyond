@@ -6,11 +6,16 @@ import java.util.Objects;
 import java.util.Set;
 
 /**
- * @author feiyang
- * @version v1.0
- * @className ThemeProperty
- * @description
- * @date 2020/01/07 周二 15:12
+ *
+ * <p>
+ * Description:
+ * </p>
+ *
+ * @author ruby woo
+ * @version v1.0.0
+ * @since 2020-02-21 15:04:09
+ * @see cn.tsxygfy.blog.properties
+ *
  */
 @Data
 public class ThemeProperty {
