@@ -6,10 +6,7 @@ import cn.tsxygfy.blog.model.pojo.AuthToken;
 import cn.tsxygfy.blog.service.AdminService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
-
-import javax.servlet.http.HttpServletResponse;
 
 /**
  * <p>
@@ -37,12 +34,8 @@ public class AdminController {
     }
 
     @PostMapping("/beyond-shutdown")
-    @ResponseBody
-    public String shutdown(String key, HttpServletResponse response) {
-        Assert.hasText(key, "key is not available");
-        Assert.state("yes".equals(key), "key is not available");
+    public String shutdown() {
         try {
-            response.setContentType("application/json;charset=utf-8");
             return "{\"message\":\"Shutting down, bye...\"}";
         } finally {
             Application.shutdown();
@@ -50,12 +43,8 @@ public class AdminController {
     }
 
     @PostMapping("/beyond-restart")
-    @ResponseBody
-    public String restart(String key, HttpServletResponse response) {
-        Assert.hasText(key, "key is not available");
-        Assert.state("yes".equals(key), "key is not available");
+    public String restart() {
         try {
-            response.setContentType("application/json;charset=utf-8");
             return "{\"message\":\"Application is restarting...Please wait a moment.\"}";
         } finally {
             Application.restart();
