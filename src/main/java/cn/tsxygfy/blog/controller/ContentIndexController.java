@@ -27,7 +27,7 @@ import java.util.Map;
  * @since 2020-03-06 20:48:45
  */
 @Controller
-public class IndexController extends BaseController {
+public class ContentIndexController extends BaseController {
 
     @Autowired
     private ArticleService articleService;

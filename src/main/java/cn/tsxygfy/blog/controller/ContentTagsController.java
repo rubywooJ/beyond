@@ -28,7 +28,7 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("/tags")
-public class TagsController extends BaseController {
+public class ContentTagsController extends BaseController {
 
     @Autowired
     private TagsService tagsService;

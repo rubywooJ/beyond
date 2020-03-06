@@ -12,9 +12,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * <p>
+ * Description:
+ * </p>
+ *
+ * @author ruby woo
+ * @version v1.0.0
+ * @see cn.tsxygfy.blog.controller
+ * @since 2020-03-06 20:54:57
+ */
 @Controller
 @RequestMapping("/archives")
-public class ArchivesController extends BaseController {
+public class ContentArchivesController extends BaseController {
 
     @Autowired
     private ArticleService articleService;
