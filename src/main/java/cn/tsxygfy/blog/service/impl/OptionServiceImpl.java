@@ -37,7 +37,7 @@ public class OptionServiceImpl implements OptionService {
     @Override
     public String getBlogBaseUrl() {
         String serverPort = applicationContext.getEnvironment().getProperty("server.port", "8080");
-        String address = "beyond.tsxygfy.cn";
+        // String address = "http://beyond.tsxygfy.cn";
 
         String baseUrl = String.format("http://%s:%s", IpUtil.getMachineIp(), serverPort);
 
