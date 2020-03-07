@@ -6,15 +6,15 @@ import cn.tsxygfy.blog.model.vo.TagsVO;
 import java.util.List;
 
 public interface TagMapper {
-    int deleteByPrimaryKey(Long id);
+    Long deleteByPrimaryKey(Long id);
 
-    int insert(Tag record);
+    Long insert(Tag record);
 
     Tag selectByPrimaryKey(Long id);
 
     List<Tag> selectAll();
 
-    int updateByPrimaryKey(Tag record);
+    Long updateByPrimaryKey(Tag record);
 
     /**
      * 查询对应id文章的全部标签

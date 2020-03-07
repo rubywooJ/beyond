@@ -14,8 +14,8 @@ import cn.tsxygfy.blog.core.BeyondConst;
  * @see cn.tsxygfy.blog.controller
  *
  */
-public class BaseController {
+public class ContentBaseController {
     final String THEME_DIR = BeyondConst.DEFAULT_THEME_ID + "/";
-    final String BASE_DIR = "theme/"+THEME_DIR;
+    final String BASE_DIR = "theme/" + THEME_DIR;
     final Integer PAGE_SIZE = 4;
 }

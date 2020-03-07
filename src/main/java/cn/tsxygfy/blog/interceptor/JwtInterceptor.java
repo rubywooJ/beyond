@@ -3,11 +3,10 @@ package cn.tsxygfy.blog.interceptor;
 import cn.tsxygfy.blog.properties.BeyondProperties;
 import cn.tsxygfy.blog.util.JwtUtil;
 import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.ExpiredJwtException;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
@@ -17,25 +16,20 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 /**
- *
  * <p>
  * Description:
  * </p>
  *
  * @author ruby woo
  * @version v1.0.0
- * @since 2020-02-21 15:02:12
  * @see cn.tsxygfy.blog.interceptor
- *
+ * @since 2020-02-21 15:02:12
  */
 @Component
 public class JwtInterceptor extends HandlerInterceptorAdapter {
 
     @Autowired
     private BeyondProperties beyondProperties;
-
-    @Autowired
-    private JwtUtil jwtUtil;
 
     /**
      * 响应之前
@@ -65,19 +59,21 @@ public class JwtInterceptor extends HandlerInterceptorAdapter {
         String authentication = request.getHeader(beyondProperties.getHeader());
         if (!StringUtils.isEmpty(authentication) && authentication.startsWith(beyondProperties.getPrefix())) {
             try {
+                // 过滤掉 token 的前缀
                 authentication = authentication.replace(beyondProperties.getPrefix(), "");
-                Claims claims = jwtUtil.parseJwt(authentication);
-                if (claims != null)
+                // 解析
+                Claims claims = JwtUtil.parseJwt(authentication);
+                if (claims != null) {
+                    // ???
                     request.setAttribute("username", claims.getSubject());
                     return true;
-            } catch (ExpiredJwtException ignored) {
-                error(response, "Token has expired");
+                }
                 return false;
             } catch (Exception ignored) {
-                error(response, "Token check failure");
+                error(response, "Token has expired or does not exist");
                 return false;
             }
-        }else {
+        } else {
             error(response, "You are not logged in");
             return false;
         }
@@ -106,6 +102,7 @@ public class JwtInterceptor extends HandlerInterceptorAdapter {
         try (PrintWriter out = response.getWriter()) {
             String responseJson = "{\"code\": " + code + "," + "\"message\":\"" + message + "\"}";
             out.print(responseJson);
-        } catch (IOException ignored) {}
+        } catch (IOException ignored) {
+        }
     }
 }

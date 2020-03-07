@@ -1,19 +1,17 @@
-package cn.tsxygfy.blog.model.pojo;
+package cn.tsxygfy.blog.model.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 /**
- *
  * <p>
  * Description:
  * </p>
  *
  * @author ruby woo
  * @version v1.0.0
+ * @see cn.tsxygfy.blog.model.dto
  * @since 2020-02-21 15:03:09
- * @see cn.tsxygfy.blog.model.pojo
- *
  */
 @Data
 public class AuthToken {

@@ -24,7 +24,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @Controller
 @RequestMapping("/archives")
-public class ContentArchivesController extends BaseController {
+public class ContentArchivesController extends ContentBaseController {
 
     @Autowired
     private ArticleService articleService;

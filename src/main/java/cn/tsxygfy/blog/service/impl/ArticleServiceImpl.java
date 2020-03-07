@@ -14,20 +14,20 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
+import org.springframework.util.ObjectUtils;
 
 import java.util.*;
 
 /**
- *
  * <p>
  * Description:
  * </p>
  *
  * @author ruby woo
  * @version v1.0.0
- * @since 2020-02-21 15:04:24
  * @see cn.tsxygfy.blog.service.impl
- *
+ * @since 2020-02-21 15:04:24
  */
 @Service
 public class ArticleServiceImpl implements ArticleService {
@@ -47,7 +47,7 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public PageResult fndAllWithTagsByPage(PageParam pageParam) {
         // 非按文章分页
-        // return PageUtil.pageInfo2PageResult(getPageInfo(pageParam));
+        // return PageUtil.pageInfo2PageResult(getPageInfo(pageParam))
 
         //先查 pageSize 篇文章
         PageInfo<Article> info = getPageInfo(pageParam);
@@ -74,7 +74,9 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public ArticleTagsVO findArticleWithTagsByTitle(String title) {
         Article article = articleMapper.selectArticleByTitle(title);
-        if (article == null) return null;
+        if (article == null) {
+            return null;
+        }
         List<Tag> tags = tagMapper.selectByArticleId(article.getId());
         ArticleTagsVO vo = new ArticleTagsVO(article);
         vo.setTags(tags);
@@ -111,6 +113,67 @@ public class ArticleServiceImpl implements ArticleService {
         return archives;
     }
 
+    @Override
+    public Article findArticleById(Long id) {
+        Assert.notNull(id, "Id must be not null");
+        return articleMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public List<Tag> getTags(Long id) {
+        Assert.notNull(id, "Id must be not null");
+        return tagMapper.selectByArticleId(id);
+    }
+
+    @Override
+    public ArticleTagsVO createOrUpdateArticle(ArticleTagsVO articleTagsVO) {
+        List<Tag> tags = articleTagsVO.getTags();
+        Article article = articleTagsVO.toArticle();
+
+        Long id = article.getId();
+
+        // 如果 id 是空就是新增
+        if (ObjectUtils.isEmpty(id)) {
+            // 插入文章 保存主键
+            id = articleMapper.insert(article);
+            articleTagsVO.setId(id);
+        } else {
+            // 更新
+            articleMapper.updateByPrimaryKey(article);
+        }
+
+        tags.forEach(tag -> {
+            // 插入标签 保存主键
+            Long tagId;
+            Tag tagInDB = tagMapper.selectByName(tag.getName());
+            if (tagInDB == null) {
+                tagId = tagMapper.insert(tag);
+            } else {
+                tagId = tagInDB.getId();
+            }
+            tag.setId(tagId);
+        });
+
+        // lambda 必须得是 final
+        final Long _id = id;
+
+        // 插入中间表
+        tags.forEach(tag -> articleMapper.insertArticleTag(_id, tag.getId()));
+
+        return articleTagsVO;
+    }
+
+    @Override
+    public void deleteArticle(Long id) {
+        articleMapper.deleteByPrimaryKey(id);
+        // 删除中间表
+        articleMapper.deleteArticleTagByArticleId(id);
+    }
+
+    // ==========================================================================
+    //                           private methods
+    // ==========================================================================
+
     /**
      * 使用分页插件完成分页
      *
@@ -122,6 +185,10 @@ public class ArticleServiceImpl implements ArticleService {
         int pageSize = pageParam.getPageSize();
         PageHelper.startPage(pageNum, pageSize);
         List<Article> all = articleMapper.selectAll();
+        all.forEach(a -> {
+            a.setContent("");
+            a.setContentMd("");
+        });
         return new PageInfo<>(all);
     }
 

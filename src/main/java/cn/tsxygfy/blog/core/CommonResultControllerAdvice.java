@@ -55,17 +55,17 @@ public class CommonResultControllerAdvice implements ResponseBodyAdvice<Object> 
                                          MethodParameter returnType,
                                          ServerHttpRequest request,
                                          ServerHttpResponse response) {
-        // Get return body
+        // 获取返回值
         Object returnBody = bodyContainer.getValue();
 
         if (returnBody instanceof BaseResponse) {
-            // If the return body is instance of BaseResponse
+            // 如果是BaseResponse直接返回
             BaseResponse<?> baseResponse = (BaseResponse) returnBody;
             response.setStatusCode(HttpStatus.resolve(baseResponse.getStatus()));
             return;
         }
 
-        // Wrap the return body
+        // 包装返回
         BaseResponse<?> baseResponse = BaseResponse.ok(returnBody);
         bodyContainer.setValue(baseResponse);
         response.setStatusCode(HttpStatus.valueOf(baseResponse.getStatus()));

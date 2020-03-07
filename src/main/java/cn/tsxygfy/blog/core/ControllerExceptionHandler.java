@@ -3,7 +3,6 @@ package cn.tsxygfy.blog.core;
 import cn.tsxygfy.blog.exception.BaseException;
 import cn.tsxygfy.blog.model.dto.BaseResponse;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 /**
@@ -18,7 +17,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
  * @see cn.tsxygfy.blog.core
  *
  */
-@ControllerAdvice(basePackages = "cn.tsxygfy.blog.controller.admin")
+//@ControllerAdvice(basePackages = "cn.tsxygfy.blog.controller.admin")
 public class ControllerExceptionHandler {
 
 

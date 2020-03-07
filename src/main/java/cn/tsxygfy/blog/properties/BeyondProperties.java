@@ -25,7 +25,7 @@ public class BeyondProperties {
     private boolean openAopLog = true;
 
     /**
-     * 从该请求头中获取 token  默认 Authorization
+     * 从该请求头中获取 token  默认 API-Authorization
      */
     private String header = BeyondConst.API_ACCESS_KEY_HEADER_NAME;
 

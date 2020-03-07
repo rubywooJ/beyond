@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 @RequestMapping("/links")
-public class ContentLinksController extends BaseController {
+public class ContentLinksController extends ContentBaseController {
 
     @GetMapping
     public String links() {

@@ -1,4 +1,4 @@
-package cn.tsxygfy.blog.model.pojo;
+package cn.tsxygfy.blog.model.dto;
 
 import lombok.Getter;
 import lombok.Setter;

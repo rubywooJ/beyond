@@ -1,8 +1,8 @@
-package cn.tsxygfy.blog.controller.admin;
+package cn.tsxygfy.blog.controller.admin.api;
 
 import cn.tsxygfy.blog.Application;
+import cn.tsxygfy.blog.model.dto.AuthToken;
 import cn.tsxygfy.blog.model.dto.LoginParam;
-import cn.tsxygfy.blog.model.pojo.AuthToken;
 import cn.tsxygfy.blog.service.AdminService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +33,7 @@ public class AdminController {
         return adminService.authenticate(loginParam);
     }
 
-    @PostMapping("/beyond-shutdown")
+    @PostMapping("beyond-shutdown")
     public String shutdown() {
         try {
             return "{\"message\":\"Shutting down, bye...\"}";
@@ -42,7 +42,7 @@ public class AdminController {
         }
     }
 
-    @PostMapping("/beyond-restart")
+    @PostMapping("beyond-restart")
     public String restart() {
         try {
             return "{\"message\":\"Application is restarting...Please wait a moment.\"}";

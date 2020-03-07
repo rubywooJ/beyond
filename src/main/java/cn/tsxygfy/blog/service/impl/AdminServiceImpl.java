@@ -2,12 +2,13 @@ package cn.tsxygfy.blog.service.impl;
 
 import cn.tsxygfy.blog.exception.BadRequestException;
 import cn.tsxygfy.blog.exception.NotFoundException;
+import cn.tsxygfy.blog.model.dto.AuthToken;
 import cn.tsxygfy.blog.model.dto.LoginParam;
 import cn.tsxygfy.blog.model.po.User;
-import cn.tsxygfy.blog.model.pojo.AuthToken;
 import cn.tsxygfy.blog.service.AdminService;
 import cn.tsxygfy.blog.service.UserService;
 import cn.tsxygfy.blog.util.EmailUtil;
+import cn.tsxygfy.blog.util.JwtUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -59,9 +60,10 @@ public class AdminServiceImpl implements AdminService {
     }
 
     private AuthToken buildAuthToken(User user) {
+        String token = JwtUtil.createJwt(user.getId().toString(), user.getUsername());
         AuthToken authToken = new AuthToken();
-        authToken.setAssesToken("asses-token");
-        authToken.setExpiredIn(123 * 321);
+        authToken.setAssesToken(token);
+        authToken.setExpiredIn(3600 * 24 * 7 * 1000);
         return authToken;
     }
 }

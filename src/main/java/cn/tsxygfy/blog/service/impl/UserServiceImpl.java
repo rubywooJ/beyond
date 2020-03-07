@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
 
 import java.util.List;
 import java.util.Optional;
@@ -66,7 +67,6 @@ public class UserServiceImpl implements UserService {
     public boolean passwordMatch(User user, String password) {
         Assert.notNull(user, "User must be not null.");
         //TODO 密码比对
-        // return StringUtils.hasText(password) && user.getPassword().equals(password);
-        return password.equals("1");
+        return StringUtils.hasText(password) && user.getPassword().equals(password);
     }
 }

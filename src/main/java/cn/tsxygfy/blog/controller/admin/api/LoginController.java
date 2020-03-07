@@ -1,4 +1,4 @@
-package cn.tsxygfy.blog.controller.admin;
+package cn.tsxygfy.blog.controller.admin.api;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
