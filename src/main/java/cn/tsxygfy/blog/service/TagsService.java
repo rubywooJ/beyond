@@ -25,4 +25,10 @@ public interface TagsService {
     List<TagArticlesVO> findArticlesByTagName(String name);
 
     Tag findTagIfExist(String name);
+
+    List<Tag> findAll();
+
+    void deleteById(Long id);
+
+    Tag createOrUpdateTag(Tag tag);
 }

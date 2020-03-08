@@ -1,5 +1,6 @@
 package cn.tsxygfy.blog.service;
 
+import cn.tsxygfy.blog.model.po.Links;
 import cn.tsxygfy.blog.model.vo.LinkTeamVO;
 
 import java.util.List;
@@ -20,4 +21,7 @@ public interface LinksService {
 
     List<LinkTeamVO> listTeamLinks();
 
+    void deleteById(Long id);
+
+    Links createOrUpdateTag(Links links);
 }

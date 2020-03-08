@@ -6,20 +6,19 @@ import cn.tsxygfy.blog.model.vo.LinkTeamVO;
 import cn.tsxygfy.blog.service.LinksService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 
 import java.util.*;
 
 /**
- *
  * <p>
  * Description:
  * </p>
  *
  * @author ruby woo
  * @version v1.0.0
- * @since 2020-02-21 15:04:34
  * @see cn.tsxygfy.blog.service.impl
- *
+ * @since 2020-02-21 15:04:34
  */
 @Service
 public class LinksServiceImpl implements LinksService {
@@ -32,7 +31,9 @@ public class LinksServiceImpl implements LinksService {
         // 数据库全部的 link
         List<Links> links = linksMapper.selectAll();
 
-        if (links == null) return null;
+        if (links == null) {
+            return null;
+        }
 
         Map<String, List<Links>> map = new HashMap<>();
         if (links.size() > 0) {
@@ -69,5 +70,24 @@ public class LinksServiceImpl implements LinksService {
             vos.add(vo);
         }
         return vos;
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        Assert.notNull(id, "Id must be not null");
+        linksMapper.deleteByPrimaryKey(id);
+    }
+
+    @Override
+    public Links createOrUpdateTag(Links links) {
+        if (links.getId() == null) {
+            // 新增
+            Long id = linksMapper.insert(links);
+            links.setId(id);
+        } else {
+            // 修改
+            linksMapper.updateByPrimaryKey(links);
+        }
+        return links;
     }
 }

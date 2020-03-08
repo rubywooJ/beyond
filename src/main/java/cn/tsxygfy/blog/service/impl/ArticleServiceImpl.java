@@ -9,6 +9,7 @@ import cn.tsxygfy.blog.model.po.Tag;
 import cn.tsxygfy.blog.model.vo.ArticleTagsVO;
 import cn.tsxygfy.blog.model.vo.ArticleYearVO;
 import cn.tsxygfy.blog.service.ArticleService;
+import cn.tsxygfy.blog.service.TagsService;
 import cn.tsxygfy.blog.util.PageUtil;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -34,6 +35,9 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Autowired
     private ArticleMapper articleMapper;
+
+    @Autowired
+    private TagsService tagsService;
 
     @Autowired
     private TagMapper tagMapper;
@@ -145,7 +149,7 @@ public class ArticleServiceImpl implements ArticleService {
         tags.forEach(tag -> {
             // 插入标签 保存主键
             Long tagId;
-            Tag tagInDB = tagMapper.selectByName(tag.getName());
+            Tag tagInDB = tagsService.findTagIfExist(tag.getName());
             if (tagInDB == null) {
                 tagId = tagMapper.insert(tag);
             } else {

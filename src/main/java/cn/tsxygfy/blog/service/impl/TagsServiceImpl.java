@@ -12,16 +12,14 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 /**
- *
  * <p>
  * Description:
  * </p>
  *
  * @author ruby woo
  * @version v1.0.0
- * @since 2020-02-21 15:04:48
  * @see cn.tsxygfy.blog.service.impl
- *
+ * @since 2020-02-21 15:04:48
  */
 @Service
 public class TagsServiceImpl implements TagsService {
@@ -46,5 +44,28 @@ public class TagsServiceImpl implements TagsService {
     @Override
     public Tag findTagIfExist(String name) {
         return tagMapper.selectByName(name);
+    }
+
+    @Override
+    public List<Tag> findAll() {
+        return tagMapper.selectAll();
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        tagMapper.deleteByPrimaryKey(id);
+    }
+
+    @Override
+    public Tag createOrUpdateTag(Tag tag) {
+        if (tag.getId() == null) {
+            // 新增
+            Long id = tagMapper.insert(tag);
+            tag.setId(id);
+        } else {
+            // 修改
+            tagMapper.updateByPrimaryKey(tag);
+        }
+        return tag;
     }
 }
