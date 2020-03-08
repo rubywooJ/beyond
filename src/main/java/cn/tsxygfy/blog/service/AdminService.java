@@ -1,7 +1,7 @@
 package cn.tsxygfy.blog.service;
 
-import cn.tsxygfy.blog.model.dto.AuthToken;
 import cn.tsxygfy.blog.model.dto.LoginParam;
+import cn.tsxygfy.blog.security.token.AuthToken;
 
 /**
  *

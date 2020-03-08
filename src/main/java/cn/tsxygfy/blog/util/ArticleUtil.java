@@ -14,9 +14,14 @@ import org.springframework.util.StringUtils;
  */
 public class ArticleUtil {
 
+    private ArticleUtil() {
+
+    }
+
     /**
      * 给出HTML截取文章摘要
-     * @param html html
+     *
+     * @param html   html
      * @param length 摘要字数
      * @return 摘要
      */

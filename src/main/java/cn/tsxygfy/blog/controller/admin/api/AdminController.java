@@ -1,8 +1,8 @@
 package cn.tsxygfy.blog.controller.admin.api;
 
 import cn.tsxygfy.blog.Application;
-import cn.tsxygfy.blog.model.dto.AuthToken;
 import cn.tsxygfy.blog.model.dto.LoginParam;
+import cn.tsxygfy.blog.security.token.AuthToken;
 import cn.tsxygfy.blog.service.AdminService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

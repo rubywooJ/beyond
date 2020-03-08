@@ -1,4 +1,4 @@
-package cn.tsxygfy.blog.model.dto;
+package cn.tsxygfy.blog.security.token;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;

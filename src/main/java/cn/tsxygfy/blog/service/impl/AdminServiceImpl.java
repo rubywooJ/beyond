@@ -2,9 +2,9 @@ package cn.tsxygfy.blog.service.impl;
 
 import cn.tsxygfy.blog.exception.BadRequestException;
 import cn.tsxygfy.blog.exception.NotFoundException;
-import cn.tsxygfy.blog.model.dto.AuthToken;
 import cn.tsxygfy.blog.model.dto.LoginParam;
 import cn.tsxygfy.blog.model.po.User;
+import cn.tsxygfy.blog.security.token.AuthToken;
 import cn.tsxygfy.blog.service.AdminService;
 import cn.tsxygfy.blog.service.UserService;
 import cn.tsxygfy.blog.util.EmailUtil;
