@@ -1,16 +1,17 @@
 package cn.tsxygfy.blog.mapper;
 
 import cn.tsxygfy.blog.model.po.Comments;
+
 import java.util.List;
 
 public interface CommentsMapper {
-    int deleteByPrimaryKey(Long id);
+    Long deleteByPrimaryKey(Long id);
 
-    int insert(Comments record);
+    Long insert(Comments record);
 
     Comments selectByPrimaryKey(Long id);
 
     List<Comments> selectAll();
 
-    int updateByPrimaryKey(Comments record);
+    Long updateByPrimaryKey(Comments record);
 }

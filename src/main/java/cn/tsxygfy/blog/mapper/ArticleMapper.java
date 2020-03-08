@@ -51,7 +51,7 @@ public interface ArticleMapper {
     /**
      * 取消关联
      *
-     * @param id
+     * @param articleId
      */
     void deleteArticleTagByArticleId(Long articleId);
 }

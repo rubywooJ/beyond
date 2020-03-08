@@ -5,15 +5,15 @@ import cn.tsxygfy.blog.model.po.User;
 import java.util.List;
 
 public interface UserMapper {
-    int deleteByPrimaryKey(Long id);
+    Long deleteByPrimaryKey(Long id);
 
-    int insert(User record);
+    Long insert(User record);
 
     User selectByPrimaryKey(Long id);
 
     List<User> selectAll();
 
-    int updateByPrimaryKey(User record);
+    Long updateByPrimaryKey(User record);
 
     User selectByUserName(String username);
 
