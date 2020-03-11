@@ -19,6 +19,9 @@ public class AuthToken {
     @JsonProperty("asses_token")
     private String assesToken;
 
+    @JsonProperty("refresh_token")
+    private String refreshToken;
+
     @JsonProperty("expired_in")
     private int expiredIn;
 }

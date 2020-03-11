@@ -16,5 +16,14 @@ import cn.tsxygfy.blog.security.token.AuthToken;
  *
  */
 public interface AdminService {
+
+    int ACCESS_TOKEN_EXPIRE_SECOND = 24 * 3600;
+
+    int REFRESH_TOKEN_EXPIRE_DAY = 30;
+
     AuthToken authenticate(LoginParam loginParam);
+
+    void clearToken();
+
+    AuthToken refreshToken(String refreshToken);
 }

@@ -6,10 +6,7 @@ import cn.tsxygfy.blog.security.token.AuthToken;
 import cn.tsxygfy.blog.service.AdminService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * <p>
@@ -33,6 +30,16 @@ public class AdminController {
     @PostMapping("login")
     public AuthToken login(@RequestBody LoginParam loginParam) {
         return adminService.authenticate(loginParam);
+    }
+
+    @PostMapping("logout")
+    public void logout() {
+        adminService.clearToken();
+    }
+
+    @PostMapping("refresh/{refreshToken}")
+    public AuthToken refresh(@PathVariable String refreshToken) {
+        return adminService.refreshToken(refreshToken);
     }
 
     @PostMapping("beyond-shutdown")

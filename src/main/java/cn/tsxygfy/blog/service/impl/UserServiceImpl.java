@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import org.springframework.util.CollectionUtils;
+import org.springframework.util.DigestUtils;
 import org.springframework.util.StringUtils;
 
 import java.util.List;
@@ -66,7 +67,13 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean passwordMatch(User user, String password) {
         Assert.notNull(user, "User must be not null.");
-        //TODO 密码比对
-        return StringUtils.hasText(password) && user.getPassword().equals(password);
+        // md5 密码比对
+        String uPwd = DigestUtils.md5DigestAsHex(password.getBytes());
+        return StringUtils.hasText(password) && user.getPassword().equals(uPwd);
+    }
+
+    @Override
+    public User getById(Long userId) {
+        return userMapper.selectByPrimaryKey(userId);
     }
 }

@@ -2,9 +2,12 @@ package cn.tsxygfy.blog.core;
 
 import cn.tsxygfy.blog.exception.BaseException;
 import cn.tsxygfy.blog.model.dto.BaseResponse;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  *
@@ -20,6 +23,15 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
  */
 @ControllerAdvice(basePackages = "cn.tsxygfy.blog.controller.admin.api")
 public class ControllerExceptionHandler {
+
+    @ResponseBody
+    @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
+    public BaseResponse<Object> handleMethodNotSupportedException(HttpRequestMethodNotSupportedException e) {
+        BaseResponse<Object> response = handleBaseException(e);
+        response.setStatus(HttpStatus.METHOD_NOT_ALLOWED.value());
+        return response;
+    }
+
 
     @ExceptionHandler(BaseException.class)
     public ResponseEntity<BaseResponse> handleBeyondException(BaseException e) {

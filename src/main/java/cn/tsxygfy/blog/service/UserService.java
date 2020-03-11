@@ -29,4 +29,6 @@ public interface UserService {
     User getByEmailOfNonNull(String email);
 
     boolean passwordMatch(User user, String password);
+
+    User getById(Long userId);
 }
