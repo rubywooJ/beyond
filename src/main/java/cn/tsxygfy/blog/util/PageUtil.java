@@ -17,6 +17,9 @@ import com.github.pagehelper.PageInfo;
  */
 public class PageUtil {
 
+    private PageUtil() {
+    }
+
     /**
      * 将分页信息封装到统一的接口
      *

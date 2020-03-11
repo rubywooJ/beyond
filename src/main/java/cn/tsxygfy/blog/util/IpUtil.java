@@ -15,6 +15,9 @@ import java.net.UnknownHostException;
  */
 public class IpUtil {
 
+    private IpUtil() {
+    }
+
     public static String getMachineIp() {
         InetAddress machineAddress;
         try {

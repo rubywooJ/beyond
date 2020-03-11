@@ -17,7 +17,6 @@ import java.util.UUID;
 public class BeyondUtil {
 
     private BeyondUtil() {
-
     }
 
     public static String buildUUIDWithoutDash() {

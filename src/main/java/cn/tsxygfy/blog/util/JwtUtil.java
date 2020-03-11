@@ -23,6 +23,9 @@ import java.util.Date;
 @Slf4j
 public class JwtUtil {
 
+    private JwtUtil() {
+    }
+
     public static String createJwt(String id, String subject) {
         long now = System.currentTimeMillis();
         long exp = now + 3600 * 24 * 7 * 1000;

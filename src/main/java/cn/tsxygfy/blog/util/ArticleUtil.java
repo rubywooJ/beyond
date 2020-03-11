@@ -15,7 +15,6 @@ import org.springframework.util.StringUtils;
 public class ArticleUtil {
 
     private ArticleUtil() {
-
     }
 
     /**
