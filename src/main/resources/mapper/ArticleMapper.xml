@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.tsxygfy.blog.mapper.ArticleMapper">
-  <resultMap id="BaseResultMap" type="cn.tsxygfy.blog.model.po.Article">
-    <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="title" jdbcType="VARCHAR" property="title" />
-    <result column="cover" jdbcType="VARCHAR" property="cover" />
-    <result column="author" jdbcType="VARCHAR" property="author" />
-    <result column="origin" jdbcType="VARCHAR" property="origin" />
-    <result column="state" jdbcType="VARCHAR" property="state" />
-    <result column="views" jdbcType="BIGINT" property="views" />
-    <result column="edit_time" jdbcType="BIGINT" property="editTime" />
-    <result column="create_time" jdbcType="BIGINT" property="createTime" />
-    <result column="type" jdbcType="INTEGER" property="type" />
+<mapper namespace="cn.tsxygfy.beyond.mapper.ArticleMapper">
+  <resultMap id="BaseResultMap" type="cn.tsxygfy.beyond.model.po.Article">
+    <id column="id" jdbcType="BIGINT" property="id"/>
+    <result column="title" jdbcType="VARCHAR" property="title"/>
+    <result column="cover" jdbcType="VARCHAR" property="cover"/>
+    <result column="author" jdbcType="VARCHAR" property="author"/>
+    <result column="origin" jdbcType="VARCHAR" property="origin"/>
+    <result column="state" jdbcType="VARCHAR" property="state"/>
+    <result column="views" jdbcType="BIGINT" property="views"/>
+    <result column="edit_time" jdbcType="BIGINT" property="editTime"/>
+    <result column="create_time" jdbcType="BIGINT" property="createTime"/>
+    <result column="type" jdbcType="INTEGER" property="type"/>
     <result column="summary" jdbcType="VARCHAR" property="summary"/>
-    <result column="content" jdbcType="LONGVARCHAR" property="content" />
-    <result column="content_md" jdbcType="LONGVARCHAR" property="contentMd" />
+    <result column="content" jdbcType="LONGVARCHAR" property="content"/>
+    <result column="content_md" jdbcType="LONGVARCHAR" property="contentMd"/>
   </resultMap>
 
-  <resultMap id="WithTagResultMap" type="cn.tsxygfy.blog.model.vo.ArticleTagsVO" extends="BaseResultMap">
-    <collection property="tags" ofType="cn.tsxygfy.blog.model.po.Tag">
+  <resultMap id="WithTagResultMap" type="cn.tsxygfy.beyond.model.vo.ArticleTagsVO" extends="BaseResultMap">
+    <collection property="tags" ofType="cn.tsxygfy.beyond.model.po.Tag">
       <id property="id" column="t_id"></id>
       <result property="name" column="t_name"></result>
     </collection>
@@ -28,31 +28,31 @@
     delete from tb_article
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="cn.tsxygfy.blog.model.po.Article">
+  <insert id="insert" parameterType="cn.tsxygfy.beyond.model.po.Article">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
       SELECT LAST_INSERT_ID()
     </selectKey>
-      insert into tb_article (title, cover, author,
-      origin, state, views, 
-      edit_time, create_time, type, summary,
-      content, content_md)
-    values (#{title,jdbcType=VARCHAR}, #{cover,jdbcType=VARCHAR}, #{author,jdbcType=VARCHAR}, 
-      #{origin,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, #{views,jdbcType=BIGINT}, 
-      #{editTime,jdbcType=BIGINT}, #{createTime,jdbcType=BIGINT}, #{type,jdbcType=INTEGER},
+    insert into tb_article (title, cover, author,
+    origin, state, views,
+    edit_time, create_time, type, summary,
+    content, content_md)
+    values (#{title,jdbcType=VARCHAR}, #{cover,jdbcType=VARCHAR}, #{author,jdbcType=VARCHAR},
+    #{origin,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, #{views,jdbcType=BIGINT},
+    #{editTime,jdbcType=BIGINT}, #{createTime,jdbcType=BIGINT}, #{type,jdbcType=INTEGER},
       #{summary,jdbcType=VARCHAR}, #{content,jdbcType=LONGVARCHAR},
        #{contentMd,jdbcType=LONGVARCHAR})
   </insert>
-  <update id="updateByPrimaryKey" parameterType="cn.tsxygfy.blog.model.po.Article">
+  <update id="updateByPrimaryKey" parameterType="cn.tsxygfy.beyond.model.po.Article">
     update tb_article
     set title = #{title,jdbcType=VARCHAR},
-      cover = #{cover,jdbcType=VARCHAR},
-      author = #{author,jdbcType=VARCHAR},
-      origin = #{origin,jdbcType=VARCHAR},
-      state = #{state,jdbcType=VARCHAR},
-      views = #{views,jdbcType=BIGINT},
-      edit_time = #{editTime,jdbcType=BIGINT},
-      create_time = #{createTime,jdbcType=BIGINT},
-      type = #{type,jdbcType=INTEGER},
+    cover = #{cover,jdbcType=VARCHAR},
+    author = #{author,jdbcType=VARCHAR},
+    origin = #{origin,jdbcType=VARCHAR},
+    state = #{state,jdbcType=VARCHAR},
+    views = #{views,jdbcType=BIGINT},
+    edit_time = #{editTime,jdbcType=BIGINT},
+    create_time = #{createTime,jdbcType=BIGINT},
+    type = #{type,jdbcType=INTEGER},
       summary = #{summary,jdbcType=VARCHAR},
       content = #{content,jdbcType=LONGVARCHAR},
       content_md = #{contentMd,jdbcType=LONGVARCHAR}
@@ -100,7 +100,7 @@
     order by create_time desc
   </select>
   <select id="selectArticleByTagName" parameterType="java.lang.String"
-          resultType="cn.tsxygfy.blog.model.vo.TagArticlesVO">
+          resultType="cn.tsxygfy.beyond.model.vo.TagArticlesVO">
     select ta.id, ta.title, ta.create_time createTime
     from tb_tag tt, tb_article ta, tb_article_tags tat
     where tt.name = #{name,jdbcType=VARCHAR} and tt.id = tat.tag_id and tat.article_id = ta.id

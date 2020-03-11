@@ -1,42 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.tsxygfy.blog.mapper.SystemLogMapper">
-  <resultMap id="BaseResultMap" type="cn.tsxygfy.blog.model.po.SystemLog">
-    <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="username" jdbcType="VARCHAR" property="username" />
-    <result column="operation" jdbcType="VARCHAR" property="operation" />
-    <result column="time" jdbcType="BIGINT" property="time" />
-    <result column="method" jdbcType="VARCHAR" property="method" />
-    <result column="params" jdbcType="VARCHAR" property="params" />
-    <result column="ip" jdbcType="VARCHAR" property="ip" />
-    <result column="create_time" jdbcType="BIGINT" property="createTime" />
-    <result column="location" jdbcType="VARCHAR" property="location" />
+<mapper namespace="cn.tsxygfy.beyond.mapper.SystemLogMapper">
+  <resultMap id="BaseResultMap" type="cn.tsxygfy.beyond.model.po.SystemLog">
+    <id column="id" jdbcType="BIGINT" property="id"/>
+    <result column="username" jdbcType="VARCHAR" property="username"/>
+    <result column="operation" jdbcType="VARCHAR" property="operation"/>
+    <result column="time" jdbcType="BIGINT" property="time"/>
+    <result column="method" jdbcType="VARCHAR" property="method"/>
+    <result column="params" jdbcType="VARCHAR" property="params"/>
+    <result column="ip" jdbcType="VARCHAR" property="ip"/>
+    <result column="create_time" jdbcType="BIGINT" property="createTime"/>
+    <result column="location" jdbcType="VARCHAR" property="location"/>
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from tb_system_log
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="cn.tsxygfy.blog.model.po.SystemLog">
+  <insert id="insert" parameterType="cn.tsxygfy.beyond.model.po.SystemLog">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
       SELECT LAST_INSERT_ID()
     </selectKey>
-      insert into tb_system_log (username, operation, time,
-      method, params, ip, 
-      create_time, location)
-    values (#{username,jdbcType=VARCHAR}, #{operation,jdbcType=VARCHAR}, #{time,jdbcType=BIGINT}, 
-      #{method,jdbcType=VARCHAR}, #{params,jdbcType=VARCHAR}, #{ip,jdbcType=VARCHAR}, 
-      #{createTime,jdbcType=BIGINT}, #{location,jdbcType=VARCHAR})
+    insert into tb_system_log (username, operation, time,
+    method, params, ip,
+    create_time, location)
+    values (#{username,jdbcType=VARCHAR}, #{operation,jdbcType=VARCHAR}, #{time,jdbcType=BIGINT},
+    #{method,jdbcType=VARCHAR}, #{params,jdbcType=VARCHAR}, #{ip,jdbcType=VARCHAR},
+    #{createTime,jdbcType=BIGINT}, #{location,jdbcType=VARCHAR})
   </insert>
-  <update id="updateByPrimaryKey" parameterType="cn.tsxygfy.blog.model.po.SystemLog">
+  <update id="updateByPrimaryKey" parameterType="cn.tsxygfy.beyond.model.po.SystemLog">
     update tb_system_log
     set username = #{username,jdbcType=VARCHAR},
-      operation = #{operation,jdbcType=VARCHAR},
-      time = #{time,jdbcType=BIGINT},
-      method = #{method,jdbcType=VARCHAR},
-      params = #{params,jdbcType=VARCHAR},
-      ip = #{ip,jdbcType=VARCHAR},
-      create_time = #{createTime,jdbcType=BIGINT},
-      location = #{location,jdbcType=VARCHAR}
+    operation = #{operation,jdbcType=VARCHAR},
+    time = #{time,jdbcType=BIGINT},
+    method = #{method,jdbcType=VARCHAR},
+    params = #{params,jdbcType=VARCHAR},
+    ip = #{ip,jdbcType=VARCHAR},
+    create_time = #{createTime,jdbcType=BIGINT},
+    location = #{location,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">

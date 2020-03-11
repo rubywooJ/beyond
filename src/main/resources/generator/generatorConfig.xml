@@ -35,14 +35,14 @@
         </javaTypeResolver>
 
         <!-- 配置实体类存放路径 -->
-        <javaModelGenerator targetPackage="cn.tsxygfy.blog.model.po" targetProject="src/main/java"/>
+        <javaModelGenerator targetPackage="cn.tsxygfy.beyond.model.po" targetProject="src/main/java"/>
 
         <!-- 配置 XML 存放路径 -->
         <sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources"/>
 
         <!-- 配置 接口 存放路径 -->
         <javaClientGenerator
-                targetPackage="cn.tsxygfy.blog.mapper"
+                targetPackage="cn.tsxygfy.beyond.mapper"
                 targetProject="src/main/java"
                 type="XMLMAPPER"/>
 

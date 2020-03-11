@@ -1,34 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.tsxygfy.blog.mapper.InfoMapper">
-  <resultMap id="BaseResultMap" type="cn.tsxygfy.blog.model.po.Info">
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="birthday" jdbcType="BIGINT" property="birthday" />
-    <result column="visited" jdbcType="BIGINT" property="visited" />
-    <result column="blog_title" jdbcType="VARCHAR" property="blogTitle" />
-    <result column="seo_keywords" jdbcType="VARCHAR" property="seoKeywords" />
-    <result column="seo_description" jdbcType="VARCHAR" property="seoDescription" />
+<mapper namespace="cn.tsxygfy.beyond.mapper.InfoMapper">
+  <resultMap id="BaseResultMap" type="cn.tsxygfy.beyond.model.po.Info">
+    <id column="id" jdbcType="INTEGER" property="id"/>
+    <result column="birthday" jdbcType="BIGINT" property="birthday"/>
+    <result column="visited" jdbcType="BIGINT" property="visited"/>
+    <result column="blog_title" jdbcType="VARCHAR" property="blogTitle"/>
+    <result column="seo_keywords" jdbcType="VARCHAR" property="seoKeywords"/>
+    <result column="seo_description" jdbcType="VARCHAR" property="seoDescription"/>
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from tb_info
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="cn.tsxygfy.blog.model.po.Info">
+  <insert id="insert" parameterType="cn.tsxygfy.beyond.model.po.Info">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
-      insert into tb_info (birthday, visited, blog_title,
-      seo_keywords, seo_description)
-    values (#{birthday,jdbcType=BIGINT}, #{visited,jdbcType=BIGINT}, #{blogTitle,jdbcType=VARCHAR}, 
-      #{seoKeywords,jdbcType=VARCHAR}, #{seoDescription,jdbcType=VARCHAR})
+    insert into tb_info (birthday, visited, blog_title,
+    seo_keywords, seo_description)
+    values (#{birthday,jdbcType=BIGINT}, #{visited,jdbcType=BIGINT}, #{blogTitle,jdbcType=VARCHAR},
+    #{seoKeywords,jdbcType=VARCHAR}, #{seoDescription,jdbcType=VARCHAR})
   </insert>
-  <update id="updateByPrimaryKey" parameterType="cn.tsxygfy.blog.model.po.Info">
+  <update id="updateByPrimaryKey" parameterType="cn.tsxygfy.beyond.model.po.Info">
     update tb_info
     set birthday = #{birthday,jdbcType=BIGINT},
-      visited = #{visited,jdbcType=BIGINT},
-      blog_title = #{blogTitle,jdbcType=VARCHAR},
-      seo_keywords = #{seoKeywords,jdbcType=VARCHAR},
-      seo_description = #{seoDescription,jdbcType=VARCHAR}
+    visited = #{visited,jdbcType=BIGINT},
+    blog_title = #{blogTitle,jdbcType=VARCHAR},
+    seo_keywords = #{seoKeywords,jdbcType=VARCHAR},
+    seo_description = #{seoDescription,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">

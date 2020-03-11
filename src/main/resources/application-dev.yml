@@ -8,5 +8,5 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
 logging:
   level:
-    cn.tsxygfy.blog.*: debug
+    cn.tsxygfy.blog.*: info
   file: ./log/beyond-log.log
