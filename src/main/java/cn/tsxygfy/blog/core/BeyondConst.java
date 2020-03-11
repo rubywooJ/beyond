@@ -18,18 +18,23 @@ import java.time.Duration;
  *
  */
 public class BeyondConst {
+
+    private BeyondConst() {
+
+    }
+
     /**
      * User home directory.
      */
-    public final static String USER_HOME = System.getProperties().getProperty("user.home");
+    public static final String USER_HOME = System.getProperties().getProperty("user.home");
     /**
      * Temporary directory.
      */
-    public final static String TEMP_DIR = System.getProperties().getProperty("java.io.tmpdir");
+    public static final String TEMP_DIR = System.getProperties().getProperty("java.io.tmpdir");
     /**
      * Default theme name.
      */
-    public final static String DEFAULT_THEME_ID = "zozo";
+    public static final String DEFAULT_THEME_ID = "zozo";
     /**
      * Version constant. (Available in production environment)
      */
@@ -85,29 +90,29 @@ public class BeyondConst {
     /**
      * Github Api url for beyond-admin release.
      */
-    public final static String HALO_ADMIN_RELEASES_LATEST = "https://api.github.com/repos/feiyangebyond/beyond-admin/releases/latest";
+    public static final String BEYOND_ADMIN_RELEASES_LATEST = "https://api.github.com/repos/feiyangebyond/beyond-admin/releases/latest";
 
     /**
      * Content token header name.
      */
-    public final static String API_ACCESS_KEY_HEADER_NAME = "API-" + HttpHeaders.AUTHORIZATION;
+    public static final String API_ACCESS_KEY_HEADER_NAME = "API-" + HttpHeaders.AUTHORIZATION;
     /**
      * Admin token header name.
      */
-    public final static String ADMIN_TOKEN_HEADER_NAME = "ADMIN-" + HttpHeaders.AUTHORIZATION;
+    public static final String ADMIN_TOKEN_HEADER_NAME = "ADMIN-" + HttpHeaders.AUTHORIZATION;
     /**
      * Admin token param name.
      */
-    public final static String ADMIN_TOKEN_QUERY_NAME = "admin_token";
+    public static final String ADMIN_TOKEN_QUERY_NAME = "admin_token";
     /**
      * Temporary token.
      */
-    public final static String TEMP_TOKEN = "temp_token";
+    public static final String TEMP_TOKEN = "temp_token";
     /**
      * Content api token param name
      */
-    public final static String API_ACCESS_KEY_QUERY_NAME = "api_access_key";
-    public final static Duration TEMP_TOKEN_EXPIRATION = Duration.ofDays(7);
+    public static final String API_ACCESS_KEY_QUERY_NAME = "api_access_key";
+    public static final Duration TEMP_TOKEN_EXPIRATION = Duration.ofDays(7);
     /**
      * user_session
      */

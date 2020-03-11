@@ -6,7 +6,10 @@ import cn.tsxygfy.blog.security.token.AuthToken;
 import cn.tsxygfy.blog.service.AdminService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * <p>
@@ -19,7 +22,6 @@ import org.springframework.web.bind.annotation.*;
  * @since 2020-02-29 22:45:31
  */
 @Slf4j
-@CrossOrigin
 @RestController
 @RequestMapping("/api/admin")
 public class AdminController {
