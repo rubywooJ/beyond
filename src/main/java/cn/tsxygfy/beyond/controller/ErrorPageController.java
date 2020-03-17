@@ -1,7 +1,6 @@
 package cn.tsxygfy.beyond.controller;
 
 import org.springframework.boot.web.servlet.error.ErrorController;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
  * @see cn.tsxygfy.beyond.controller
  * @since 2020-02-21 14:59:27
  */
-@Controller
+//@Controller
 public class ErrorPageController extends ContentBaseController implements ErrorController {
     @Override
     public String getErrorPath() {

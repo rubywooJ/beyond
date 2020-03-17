@@ -22,7 +22,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
  * @see cn.tsxygfy.beyond.core
  * @since 2020-02-21 14:35:11
  */
-@ControllerAdvice("cn.tsxygfy.blog.controller")
+@ControllerAdvice("cn.tsxygfy.beyond.controller")
 public class CommonResultControllerAdvice implements ResponseBodyAdvice<Object> {
 
     @Override
