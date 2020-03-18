@@ -26,7 +26,7 @@ public class DefaultAuthenticationFailureHandler implements AuthenticationFailur
 
     @Override
     public void onFailure(HttpServletRequest request, HttpServletResponse response, BaseException exception) throws IOException, ServletException {
-        log.error("Authentication failure", exception);
+        log.error("Authentication failure {}", exception.getMessage());
 
         BaseResponse<Object> error = new BaseResponse<>();
         error.setStatus(exception.getStatus().value());

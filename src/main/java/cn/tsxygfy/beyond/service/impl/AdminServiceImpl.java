@@ -1,5 +1,6 @@
 package cn.tsxygfy.beyond.service.impl;
 
+import cn.tsxygfy.beyond.cache.store.InMemoryCacheStore;
 import cn.tsxygfy.beyond.exception.BadRequestException;
 import cn.tsxygfy.beyond.exception.NotFoundException;
 import cn.tsxygfy.beyond.model.dto.LoginParam;
@@ -11,10 +12,13 @@ import cn.tsxygfy.beyond.service.AdminService;
 import cn.tsxygfy.beyond.service.UserService;
 import cn.tsxygfy.beyond.util.BeyondUtil;
 import cn.tsxygfy.beyond.util.EmailUtil;
+import cn.tsxygfy.beyond.util.SecurityUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
+
+import java.util.concurrent.TimeUnit;
 
 /**
  * <p>
@@ -32,6 +36,9 @@ public class AdminServiceImpl implements AdminService {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private InMemoryCacheStore inMemoryCacheStore;
 
     @Override
     public AuthToken authenticate(LoginParam loginParam) {
@@ -69,20 +76,33 @@ public class AdminServiceImpl implements AdminService {
         }
 
         User user = authentication.getUserDetail().getUser();
-        //TODO 清除缓存中的 access_token  refresh_token
 
+        inMemoryCacheStore.getAny(SecurityUtil.buildAccessTokenKey(user), String.class).ifPresent(aToken -> {
+            inMemoryCacheStore.delete(SecurityUtil.buildTokenAccessKey(aToken));
+            inMemoryCacheStore.delete(SecurityUtil.buildAccessTokenKey(user));
+        });
+        inMemoryCacheStore.getAny(SecurityUtil.buildRefreshTokenKey(user), String.class).ifPresent(rToken -> {
+            inMemoryCacheStore.delete(SecurityUtil.buildTokenRefreshKey(rToken));
+            inMemoryCacheStore.delete(SecurityUtil.buildRefreshTokenKey(user));
+        });
+
+        log.info("you have been logged out.");
     }
 
     @Override
     public AuthToken refreshToken(String refreshToken) {
         Assert.hasText(refreshToken, "Refresh token must not be blank");
-        //TODO 从缓存中取 userId 判断是否已过期 过期则重新登录
-        Long userId = 1L;
+
+        Long userId = inMemoryCacheStore.getAny(SecurityUtil.buildTokenRefreshKey(refreshToken), Long.class).orElseThrow(() ->
+                new BadRequestException("Login status has expired, please login again"));
         // 没有过期
         User user = userService.getById(userId);
-
-        // 清空缓存
-
+        // 删除token
+        inMemoryCacheStore.getAny(SecurityUtil.buildAccessTokenKey(user), String.class).ifPresent(accessToken ->
+                inMemoryCacheStore.delete(SecurityUtil.buildTokenAccessKey(accessToken)));
+        inMemoryCacheStore.delete(SecurityUtil.buildTokenRefreshKey(refreshToken));
+        inMemoryCacheStore.delete(SecurityUtil.buildAccessTokenKey(user));
+        inMemoryCacheStore.delete(SecurityUtil.buildRefreshTokenKey(user));
 
         return buildAuthToken(user);
     }
@@ -92,7 +112,11 @@ public class AdminServiceImpl implements AdminService {
         authToken.setAssesToken(BeyondUtil.buildUUIDWithoutDash());
         authToken.setExpiredIn(ACCESS_TOKEN_EXPIRE_SECOND);
         authToken.setRefreshToken(BeyondUtil.buildUUIDWithoutDash());
-        //TODO 存 token 进缓存
+        // 将tokens放入缓存
+        inMemoryCacheStore.putAny(SecurityUtil.buildAccessTokenKey(user), authToken.getAssesToken(), ACCESS_TOKEN_EXPIRE_SECOND, TimeUnit.SECONDS);
+        inMemoryCacheStore.putAny(SecurityUtil.buildRefreshTokenKey(user), authToken.getRefreshToken(), REFRESH_TOKEN_EXPIRE_DAY, TimeUnit.DAYS);
+        inMemoryCacheStore.putAny(SecurityUtil.buildTokenAccessKey(authToken.getAssesToken()), user.getId(), ACCESS_TOKEN_EXPIRE_SECOND, TimeUnit.SECONDS);
+        inMemoryCacheStore.putAny(SecurityUtil.buildTokenRefreshKey(authToken.getRefreshToken()), user.getId(), REFRESH_TOKEN_EXPIRE_DAY, TimeUnit.DAYS);
         return authToken;
     }
 }

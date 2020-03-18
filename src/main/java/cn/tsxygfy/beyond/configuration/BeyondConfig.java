@@ -1,8 +1,10 @@
 package cn.tsxygfy.beyond.configuration;
 
+import cn.tsxygfy.beyond.cache.store.InMemoryCacheStore;
 import cn.tsxygfy.beyond.core.CorsFilter;
 import cn.tsxygfy.beyond.security.filter.AdminAuthenticationFilter;
 import cn.tsxygfy.beyond.security.handler.DefaultAuthenticationFailureHandler;
+import cn.tsxygfy.beyond.service.UserService;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -34,9 +36,16 @@ public class BeyondConfig {
     }
 
     @Bean
-    public FilterRegistrationBean<AdminAuthenticationFilter> authenticationFilterRegistrationBean() {
+    public InMemoryCacheStore inMemoryCacheStore() {
+        return new InMemoryCacheStore();
+    }
 
-        AdminAuthenticationFilter filter = new AdminAuthenticationFilter();
+    @Bean
+    public FilterRegistrationBean<AdminAuthenticationFilter> authenticationFilterRegistrationBean(
+            InMemoryCacheStore inMemoryCacheStore,
+            UserService userService) {
+
+        AdminAuthenticationFilter filter = new AdminAuthenticationFilter(inMemoryCacheStore, userService);
 
         DefaultAuthenticationFailureHandler handler = new DefaultAuthenticationFailureHandler();
 

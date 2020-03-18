@@ -3,6 +3,7 @@ package cn.tsxygfy.beyond.security.filter;
 import cn.tsxygfy.beyond.security.context.SecurityContextHolder;
 import cn.tsxygfy.beyond.security.handler.AuthenticationFailureHandler;
 import cn.tsxygfy.beyond.security.handler.DefaultAuthenticationFailureHandler;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.lang.NonNull;
 import org.springframework.lang.Nullable;
 import org.springframework.util.AntPathMatcher;
@@ -28,6 +29,7 @@ import java.util.Set;
  * @see cn.tsxygfy.beyond.security.filter
  * @since 2020-03-08 21:25:48
  */
+@Slf4j
 public abstract class AbstractAuthenticationFilter extends OncePerRequestFilter {
 
     AntPathMatcher antPathMatcher = new AntPathMatcher();
@@ -67,8 +69,9 @@ public abstract class AbstractAuthenticationFilter extends OncePerRequestFilter 
     }
 
     String getTokenFromRequest(HttpServletRequest request, String headerName) {
-        logger.info(request.toString());
-        return request.getHeader(headerName);
+        String accessKey = request.getHeader(headerName);
+        log.info("Got access key from header: [{}: {}]", headerName, accessKey);
+        return accessKey;
     }
 
     // ===================================================================================

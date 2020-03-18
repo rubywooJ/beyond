@@ -15,7 +15,8 @@ import cn.tsxygfy.beyond.security.token.AuthToken;
  */
 public interface AdminService {
 
-    int ACCESS_TOKEN_EXPIRE_SECOND = 24 * 3600;
+    //int ACCESS_TOKEN_EXPIRE_SECOND = 24 * 3600;
+    int ACCESS_TOKEN_EXPIRE_SECOND = 60;
 
     int REFRESH_TOKEN_EXPIRE_DAY = 30;
 
