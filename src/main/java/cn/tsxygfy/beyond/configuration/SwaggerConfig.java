@@ -31,7 +31,7 @@ public class SwaggerConfig {
                 .apiInfo(apiInfo())
                 .select()
                 .paths(PathSelectors.any())
-                .apis(RequestHandlerSelectors.basePackage("cn.tsxygfy.blog.controller.admin.api"))
+                .apis(RequestHandlerSelectors.basePackage("cn.tsxygfy.beyond.controller.admin.api"))
                 .build();
     }
 
@@ -39,7 +39,7 @@ public class SwaggerConfig {
         return new ApiInfoBuilder()
                 .title("BEYOND API")
                 .description("beyond博客api文档")
-                .contact(new Contact("ruby woo", "https://beyond.tsxygfy.cn", "i520gfy@gmail.com"))
+                .contact(new Contact("ruby woo", "https://www.tsxygfy.cn", "i520gfy@gmail.com"))
                 .version("1.0.0")
                 .build();
     }
