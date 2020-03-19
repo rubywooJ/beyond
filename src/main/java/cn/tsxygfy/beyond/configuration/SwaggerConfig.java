@@ -31,7 +31,7 @@ public class SwaggerConfig {
                 .apiInfo(apiInfo())
                 .select()
                 .paths(PathSelectors.any())
-                .apis(RequestHandlerSelectors.basePackage("cn.tsxygfy.blog.controller.admin"))
+                .apis(RequestHandlerSelectors.basePackage("cn.tsxygfy.blog.controller.admin.api"))
                 .build();
     }
 
