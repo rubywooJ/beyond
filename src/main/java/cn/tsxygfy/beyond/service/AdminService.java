@@ -15,9 +15,14 @@ import cn.tsxygfy.beyond.security.token.AuthToken;
  */
 public interface AdminService {
 
-    //int ACCESS_TOKEN_EXPIRE_SECOND = 24 * 3600;
-    int ACCESS_TOKEN_EXPIRE_SECOND = 60;
+    /**
+     * access_token 过期时间 一天
+     */
+    int ACCESS_TOKEN_EXPIRE_SECOND = 24 * 3600;
 
+    /**
+     * refresh_token 过期时间 三十天
+     */
     int REFRESH_TOKEN_EXPIRE_DAY = 30;
 
     AuthToken authenticate(LoginParam loginParam);

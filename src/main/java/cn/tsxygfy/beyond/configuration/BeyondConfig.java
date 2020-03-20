@@ -30,7 +30,7 @@ public class BeyondConfig {
 
         FilterRegistrationBean<CorsFilter> bean = new FilterRegistrationBean<>();
         bean.setFilter(corsFilter);
-        bean.addUrlPatterns("/*");
+        bean.addUrlPatterns("/api/admin/*");
         bean.setOrder(Ordered.HIGHEST_PRECEDENCE + 5);
         return bean;
     }

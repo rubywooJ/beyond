@@ -6,6 +6,13 @@ import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
+import static cn.tsxygfy.beyond.core.BeyondConst.FILE_SEPARATOR;
+import static cn.tsxygfy.beyond.core.BeyondConst.USER_HOME;
+
 /**
  * <p>
  * Description:
@@ -42,11 +49,19 @@ public class BeyondProperties {
     /**
      * 过期时间  默认7天 单位 秒s
      */
-    private Long ttl = 3600*24*7L;
+    private Long ttl = 3600 * 24 * 7L;
 
     /**
      * Admin path.
      */
     private String adminPath = "admin";
 
+    /**
+     * work dir {user.home}/.beyond/
+     */
+    private String workDir = USER_HOME + FILE_SEPARATOR + ".beyond" + FILE_SEPARATOR;
+
+    public BeyondProperties() throws IOException {
+        Files.createDirectories(Paths.get(workDir));
+    }
 }

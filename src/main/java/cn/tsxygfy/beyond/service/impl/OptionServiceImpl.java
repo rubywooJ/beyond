@@ -5,9 +5,11 @@ import cn.tsxygfy.beyond.model.po.Info;
 import cn.tsxygfy.beyond.service.OptionService;
 import cn.tsxygfy.beyond.util.IpUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
 
 import java.util.HashMap;
 import java.util.List;
@@ -32,8 +34,14 @@ public class OptionServiceImpl implements OptionService {
     @Autowired
     private InfoMapper infoMapper;
 
+    @Value("${beyond.domain}")
+    private String domain;
+
     @Override
     public String getBlogBaseUrl() {
+        if (StringUtils.hasText(domain)) {
+            return domain;
+        }
         String serverPort = applicationContext.getEnvironment().getProperty("server.port", "8080");
         // String address = "http://beyond.tsxygfy.cn";
 
