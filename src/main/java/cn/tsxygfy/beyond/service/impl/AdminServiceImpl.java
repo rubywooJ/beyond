@@ -109,13 +109,13 @@ public class AdminServiceImpl implements AdminService {
 
     private AuthToken buildAuthToken(User user) {
         AuthToken authToken = new AuthToken();
-        authToken.setAssesToken(BeyondUtil.buildUUIDWithoutDash());
+        authToken.setAccessToken(BeyondUtil.buildUUIDWithoutDash());
         authToken.setExpiredIn(ACCESS_TOKEN_EXPIRE_SECOND);
         authToken.setRefreshToken(BeyondUtil.buildUUIDWithoutDash());
         // 将tokens放入缓存
-        inMemoryCacheStore.putAny(SecurityUtil.buildAccessTokenKey(user), authToken.getAssesToken(), ACCESS_TOKEN_EXPIRE_SECOND, TimeUnit.SECONDS);
+        inMemoryCacheStore.putAny(SecurityUtil.buildAccessTokenKey(user), authToken.getAccessToken(), ACCESS_TOKEN_EXPIRE_SECOND, TimeUnit.SECONDS);
         inMemoryCacheStore.putAny(SecurityUtil.buildRefreshTokenKey(user), authToken.getRefreshToken(), REFRESH_TOKEN_EXPIRE_DAY, TimeUnit.DAYS);
-        inMemoryCacheStore.putAny(SecurityUtil.buildTokenAccessKey(authToken.getAssesToken()), user.getId(), ACCESS_TOKEN_EXPIRE_SECOND, TimeUnit.SECONDS);
+        inMemoryCacheStore.putAny(SecurityUtil.buildTokenAccessKey(authToken.getAccessToken()), user.getId(), ACCESS_TOKEN_EXPIRE_SECOND, TimeUnit.SECONDS);
         inMemoryCacheStore.putAny(SecurityUtil.buildTokenRefreshKey(authToken.getRefreshToken()), user.getId(), REFRESH_TOKEN_EXPIRE_DAY, TimeUnit.DAYS);
         return authToken;
     }

@@ -1,5 +1,6 @@
 package cn.tsxygfy.beyond.service;
 
+import cn.tsxygfy.beyond.model.dto.UserInfo;
 import cn.tsxygfy.beyond.model.po.User;
 
 import java.util.Optional;
@@ -29,4 +30,6 @@ public interface UserService {
     boolean passwordMatch(User user, String password);
 
     User getById(Long userId);
+
+    UserInfo getUserInfo();
 }

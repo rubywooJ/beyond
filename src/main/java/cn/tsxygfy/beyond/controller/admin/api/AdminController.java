@@ -6,6 +6,7 @@ import cn.tsxygfy.beyond.security.token.AuthToken;
 import cn.tsxygfy.beyond.service.AdminService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -29,6 +30,7 @@ public class AdminController {
 
     @PostMapping("login")
     public AuthToken login(@RequestBody LoginParam loginParam) {
+        Assert.notNull(loginParam, "Username or password must be not null!");
         return adminService.authenticate(loginParam);
     }
 

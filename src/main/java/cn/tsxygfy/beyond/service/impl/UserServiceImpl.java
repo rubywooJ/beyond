@@ -1,7 +1,9 @@
 package cn.tsxygfy.beyond.service.impl;
 
+import cn.tsxygfy.beyond.cache.store.InMemoryCacheStore;
 import cn.tsxygfy.beyond.exception.NotFoundException;
 import cn.tsxygfy.beyond.mapper.UserMapper;
+import cn.tsxygfy.beyond.model.dto.UserInfo;
 import cn.tsxygfy.beyond.model.po.User;
 import cn.tsxygfy.beyond.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +28,9 @@ import java.util.Optional;
  */
 @Service
 public class UserServiceImpl implements UserService {
+
+    @Autowired
+    private InMemoryCacheStore inMemoryCacheStore;
 
     @Autowired
     private UserMapper userMapper;
@@ -73,5 +78,14 @@ public class UserServiceImpl implements UserService {
     @Override
     public User getById(Long userId) {
         return userMapper.selectByPrimaryKey(userId);
+    }
+
+    @Override
+    public UserInfo getUserInfo() {
+        Optional<User> user = getCurrentUser();
+        if (!user.isPresent()) {
+            throw new NotFoundException("No user exist.");
+        }
+        return new UserInfo(user.get());
     }
 }
