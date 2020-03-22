@@ -16,8 +16,8 @@ import lombok.Data;
 @Data
 public class AuthToken {
 
-    @JsonProperty("asses_token")
-    private String assesToken;
+    @JsonProperty("access_token")
+    private String accessToken;
 
     @JsonProperty("refresh_token")
     private String refreshToken;
