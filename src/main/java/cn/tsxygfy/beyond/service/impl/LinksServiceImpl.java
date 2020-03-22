@@ -79,7 +79,7 @@ public class LinksServiceImpl implements LinksService {
     }
 
     @Override
-    public Links createOrUpdateTag(Links links) {
+    public Links createOrUpdateLink(Links links) {
         if (links.getId() == null) {
             // 新增
             Long id = linksMapper.insert(links);
@@ -89,5 +89,10 @@ public class LinksServiceImpl implements LinksService {
             linksMapper.updateByPrimaryKey(links);
         }
         return links;
+    }
+
+    @Override
+    public Long getCount() {
+        return linksMapper.getCount();
     }
 }

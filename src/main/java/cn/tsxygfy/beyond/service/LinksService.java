@@ -21,5 +21,7 @@ public interface LinksService {
 
     void deleteById(Long id);
 
-    Links createOrUpdateTag(Links links);
+    Links createOrUpdateLink(Links links);
+
+    Long getCount();
 }

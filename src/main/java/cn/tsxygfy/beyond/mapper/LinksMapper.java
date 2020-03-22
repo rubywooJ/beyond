@@ -14,4 +14,6 @@ public interface LinksMapper {
     List<Links> selectAll();
 
     Long updateByPrimaryKey(Links record);
+
+    Long getCount();
 }

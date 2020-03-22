@@ -14,4 +14,6 @@ public interface CommentsMapper {
     List<Comments> selectAll();
 
     Long updateByPrimaryKey(Comments record);
+
+    Long getCount();
 }

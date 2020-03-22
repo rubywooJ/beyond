@@ -26,15 +26,15 @@
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into tb_comments (p_id, c_id, article_title,
-    article_id, name, c_name,
-    time, email, url, type,
-    ip, device, address,
-    content)
-    values (#{pId,jdbcType=BIGINT}, #{cId,jdbcType=BIGINT}, #{articleTitle,jdbcType=VARCHAR},
-    #{articleId,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{cName,jdbcType=VARCHAR},
-      #{time,jdbcType=BIGINT}, #{email,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, 
-      #{ip,jdbcType=VARCHAR}, #{device,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      insert into tb_comments (p_id, c_id, article_title,
+      article_id, name, c_name,
+      time, email, url, type,
+      ip, device, address,
+      content)
+      values (#{pId,jdbcType=BIGINT}, #{cId,jdbcType=BIGINT}, #{articleTitle,jdbcType=VARCHAR},
+      #{articleId,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{cName,jdbcType=VARCHAR},
+      #{time,jdbcType=BIGINT}, #{email,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER},
+      #{ip,jdbcType=VARCHAR}, #{device,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR},
       #{content,jdbcType=LONGVARCHAR})
   </insert>
   <update id="updateByPrimaryKey" parameterType="cn.tsxygfy.beyond.model.po.Comments">
@@ -56,14 +56,18 @@
     where id = #{id,jdbcType=BIGINT}
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
-    select id, p_id, c_id, article_title, article_id, name, c_name, time, email, url, 
+      select id, p_id, c_id, article_title, article_id, name, c_name, time, email, url,
+      type, ip, device, address, content
+      from tb_comments
+      where id = #{id,jdbcType=BIGINT}
+  </select>
+    <select id="selectAll" resultMap="BaseResultMap">
+    select id, p_id, c_id, article_title, article_id, name, c_name, time, email, url,
     type, ip, device, address, content
     from tb_comments
-    where id = #{id,jdbcType=BIGINT}
   </select>
-  <select id="selectAll" resultMap="BaseResultMap">
-    select id, p_id, c_id, article_title, article_id, name, c_name, time, email, url, 
-    type, ip, device, address, content
+    <select id="getCount" resultType="java.lang.Long">
+    select count(1)
     from tb_comments
   </select>
 </mapper>

@@ -8,6 +8,7 @@ import cn.tsxygfy.beyond.model.vo.TagsVO;
 import cn.tsxygfy.beyond.service.TagsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -56,6 +57,7 @@ public class TagsServiceImpl implements TagsService {
         tagMapper.deleteByPrimaryKey(id);
     }
 
+    @Transactional
     @Override
     public Tag createOrUpdateTag(Tag tag) {
         if (tag.getId() == null) {

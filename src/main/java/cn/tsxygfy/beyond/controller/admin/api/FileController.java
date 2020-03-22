@@ -3,6 +3,7 @@ package cn.tsxygfy.beyond.controller.admin.api;
 import cn.tsxygfy.beyond.exception.FileUploadException;
 import cn.tsxygfy.beyond.model.dto.FileInfo;
 import cn.tsxygfy.beyond.service.FileUploadService;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,6 +28,7 @@ public class FileController {
     @Autowired
     private FileUploadService fileUploadService;
 
+    @ApiOperation("上传附件图片")
     @PostMapping
     public FileInfo upload(@RequestParam MultipartFile file) {
         if (file.isEmpty()) {

@@ -25,6 +25,14 @@ public class DateUtil {
         return new Date();
     }
 
+    public static Date getDate(Long time) {
+        return new Date(time);
+    }
+
+    public static Long betweenDays(Date endDate, Date startDate) {
+        // 获取相差的天数
+        return (endDate.getTime() - startDate.getTime()) / (1000L * 3600L * 24L);
+    }
 
     public static Date add(@NonNull Date date, long time, @NonNull TimeUnit timeUnit) {
         Date result;

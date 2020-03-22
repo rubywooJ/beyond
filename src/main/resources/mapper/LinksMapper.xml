@@ -32,13 +32,17 @@
     team = #{team,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select id, name, url, img, description, team
+        from tb_links
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <select id="selectAll" resultMap="BaseResultMap">
     select id, name, url, img, description, team
     from tb_links
-    where id = #{id,jdbcType=BIGINT}
   </select>
-  <select id="selectAll" resultMap="BaseResultMap">
-    select id, name, url, img, description, team
+    <select id="getCount" resultType="java.lang.Long">
+    select count(1)
     from tb_links
   </select>
 </mapper>

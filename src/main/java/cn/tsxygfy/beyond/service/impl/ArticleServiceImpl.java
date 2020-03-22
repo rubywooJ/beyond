@@ -15,6 +15,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 import org.springframework.util.ObjectUtils;
 
@@ -129,6 +130,7 @@ public class ArticleServiceImpl implements ArticleService {
         return tagMapper.selectByArticleId(id);
     }
 
+    @Transactional
     @Override
     public ArticleTagsVO createOrUpdateArticle(ArticleTagsVO articleTagsVO) {
         List<Tag> tags = articleTagsVO.getTags();
@@ -167,11 +169,17 @@ public class ArticleServiceImpl implements ArticleService {
         return articleTagsVO;
     }
 
+    @Transactional
     @Override
     public void deleteArticle(Long id) {
         articleMapper.deleteByPrimaryKey(id);
         // 删除中间表
         articleMapper.deleteArticleTagByArticleId(id);
+    }
+
+    @Override
+    public Long getCount() {
+        return articleMapper.selectCount();
     }
 
     // ==========================================================================

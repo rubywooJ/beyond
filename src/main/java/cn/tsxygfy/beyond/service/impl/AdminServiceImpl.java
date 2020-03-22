@@ -3,14 +3,16 @@ package cn.tsxygfy.beyond.service.impl;
 import cn.tsxygfy.beyond.cache.store.InMemoryCacheStore;
 import cn.tsxygfy.beyond.exception.BadRequestException;
 import cn.tsxygfy.beyond.exception.NotFoundException;
+import cn.tsxygfy.beyond.model.dto.BlogInfo;
 import cn.tsxygfy.beyond.model.dto.LoginParam;
+import cn.tsxygfy.beyond.model.po.Info;
 import cn.tsxygfy.beyond.model.po.User;
 import cn.tsxygfy.beyond.security.authentication.Authentication;
 import cn.tsxygfy.beyond.security.context.SecurityContextHolder;
 import cn.tsxygfy.beyond.security.token.AuthToken;
-import cn.tsxygfy.beyond.service.AdminService;
-import cn.tsxygfy.beyond.service.UserService;
+import cn.tsxygfy.beyond.service.*;
 import cn.tsxygfy.beyond.util.BeyondUtil;
+import cn.tsxygfy.beyond.util.DateUtil;
 import cn.tsxygfy.beyond.util.EmailUtil;
 import cn.tsxygfy.beyond.util.SecurityUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -38,7 +40,38 @@ public class AdminServiceImpl implements AdminService {
     private UserService userService;
 
     @Autowired
+    private ArticleService articleService;
+
+    @Autowired
     private InMemoryCacheStore inMemoryCacheStore;
+
+    @Autowired
+    private CommentsService commentsService;
+
+    @Autowired
+    private LinksService linksService;
+
+    @Autowired
+    private InfoService infoService;
+
+    @Override
+    public BlogInfo getBlogInfo() {
+        Long articleCount = articleService.getCount();
+        Long commentCount = commentsService.getCount();
+        Long linkCount = linksService.getCount();
+        Info info = infoService.getInfo();
+        Long birthday = info.getBirthday();
+        BlogInfo blogInfo = new BlogInfo();
+        blogInfo.setArticleCount(articleCount);
+        // TODO 统计附件的数量
+        blogInfo.setAttachmentCount(0);
+        blogInfo.setBirthday(birthday);
+        blogInfo.setCommentCount(commentCount);
+        blogInfo.setLinkCount(linkCount);
+        blogInfo.setVisitedCount(info.getVisited());
+        blogInfo.setEstablishDays(DateUtil.betweenDays(DateUtil.now(), DateUtil.getDate(birthday)));
+        return blogInfo;
+    }
 
     @Override
     public AuthToken authenticate(LoginParam loginParam) {

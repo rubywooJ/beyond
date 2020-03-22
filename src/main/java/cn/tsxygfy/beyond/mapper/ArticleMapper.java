@@ -54,4 +54,11 @@ public interface ArticleMapper {
      * @param articleId
      */
     void deleteArticleTagByArticleId(Long articleId);
+
+    /**
+     * 文章数目
+     *
+     * @return
+     */
+    Long selectCount();
 }

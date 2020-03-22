@@ -84,4 +84,11 @@ public interface ArticleService {
      * @return
      */
     void deleteArticle(Long id);
+
+    /**
+     * 文章总数
+     *
+     * @return
+     */
+    Long getCount();
 }

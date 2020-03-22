@@ -1,5 +1,6 @@
 package cn.tsxygfy.beyond.service;
 
+import cn.tsxygfy.beyond.model.dto.BlogInfo;
 import cn.tsxygfy.beyond.model.dto.LoginParam;
 import cn.tsxygfy.beyond.security.token.AuthToken;
 
@@ -30,4 +31,6 @@ public interface AdminService {
     void clearToken();
 
     AuthToken refreshToken(String refreshToken);
+
+    BlogInfo getBlogInfo();
 }
