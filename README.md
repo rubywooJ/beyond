@@ -54,7 +54,7 @@ java -jar beond-latest.jar
 你也可以配置后台运行
 
 ```shell
-nohup java -jar beyond-latest.jar >/dev/null  2>&1 &^C
+nohup java -jar beyond-latest.jar >/dev/null  2>&1 &
 ```
 
 #### 第四步
