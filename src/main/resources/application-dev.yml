@@ -8,5 +8,8 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
 logging:
   level:
-    cn.tsxygfy.blog.*: info
-  file: ./log/beyond-log.log
+    cn.tsxygfy.beyond.*: debug
+  # file: ./log/beyond-log.log
+# 设置域名
+#beyond:
+#  domain: www.tsxygfy.cn

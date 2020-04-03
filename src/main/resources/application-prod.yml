@@ -9,7 +9,7 @@ spring:
 
 logging:
   level:
-    cn.tsxygfy.blog.*: info
+    cn.tsxygfy.beyond.*: info
   file: ./log/beyond-log.log
 server:
   port: 8888

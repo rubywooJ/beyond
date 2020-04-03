@@ -1,6 +1,7 @@
 package cn.tsxygfy.beyond.configuration;
 
 import cn.tsxygfy.beyond.core.BeyondConst;
+import cn.tsxygfy.beyond.service.OptionService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.ApiInfoBuilder;
@@ -27,9 +28,10 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 public class SwaggerConfig {
 
     @Bean
-    public Docket createRestApi() {
+    public Docket createRestApi(OptionService optionService) {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
+                .host(optionService.getBlogBaseUrl())
                 .select()
                 .paths(PathSelectors.any())
                 .apis(RequestHandlerSelectors.basePackage("cn.tsxygfy.beyond.controller.admin.api"))

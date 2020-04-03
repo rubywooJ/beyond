@@ -34,18 +34,18 @@ public class OptionServiceImpl implements OptionService {
     @Autowired
     private InfoMapper infoMapper;
 
-    @Value("${beyond.domain}")
+    @Value("${beyond.domain:}")
     private String domain;
 
     @Override
     public String getBlogBaseUrl() {
-        if (StringUtils.hasText(domain)) {
-            return domain;
-        }
         String serverPort = applicationContext.getEnvironment().getProperty("server.port", "8080");
-        // String address = "http://beyond.tsxygfy.cn";
-
-        String baseUrl = String.format("http://%s:%s", IpUtil.getMachineIp(), serverPort);
+        String baseUrl;
+        if (StringUtils.hasText(domain)) {
+            baseUrl = String.format("http://%s:%s", domain, serverPort);
+        } else {
+            baseUrl = String.format("http://%s:%s", IpUtil.getMachineIp(), serverPort);
+        }
 
         return baseUrl;
     }
@@ -54,7 +54,7 @@ public class OptionServiceImpl implements OptionService {
     public Map<String, Object> listOptions() {
         Map<String, Object> result = new HashMap<>(3);
         List<Info> infos = infoMapper.selectAll();
-        if(!CollectionUtils.isEmpty(infos)){
+        if (!CollectionUtils.isEmpty(infos)) {
             Info info = infos.get(0);
             result.put("blog_title", info.getBlogTitle());
             result.put("seo_keywords", info.getSeoKeywords());
