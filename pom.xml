@@ -10,7 +10,7 @@
     </parent>
     <groupId>cn.tsxygfy</groupId>
     <artifactId>beyond</artifactId>
-    <version>v0.2.0 preview edition</version>
+    <version>v1.4.1-release-edition</version>
     <name>blog</name>
     <description>A blog system based on spring boot.</description>
 

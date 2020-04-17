@@ -1,12 +1,13 @@
 package cn.tsxygfy.beyond.controller.admin.api;
 
+import cn.tsxygfy.beyond.model.dto.BaseResponse;
+import cn.tsxygfy.beyond.model.dto.ModifyPasswordParam;
 import cn.tsxygfy.beyond.model.dto.UserInfo;
 import cn.tsxygfy.beyond.service.UserService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.util.Assert;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * <p>
@@ -29,6 +30,14 @@ public class UserController {
     @GetMapping("info")
     public UserInfo getUserInfo() {
         return userService.getUserInfo();
+    }
+
+    @ApiOperation("修改用户密码")
+    @PostMapping("restPassword")
+    public BaseResponse<String> modifyPassword(@RequestBody ModifyPasswordParam param) {
+        Assert.isTrue(param.getNewPassword().equals(param.getConfirmPassword()), "Passwords entered twice are inconsistent。");
+        userService.modifyPassword(param);
+        return BaseResponse.ok("You have successfully changed your password, please log in again。");
     }
 
 }

@@ -30,6 +30,13 @@ public class ControllerExceptionHandler {
         return response;
     }
 
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(IllegalArgumentException.class)
+    public BaseResponse handleIllegalArgumentException(IllegalArgumentException e) {
+        BaseResponse<Object> response = handleException(e);
+        response.setStatus(HttpStatus.BAD_REQUEST.value());
+        return response;
+    }
 
     @ExceptionHandler(BaseException.class)
     public ResponseEntity<BaseResponse> handleBeyondException(BaseException e) {

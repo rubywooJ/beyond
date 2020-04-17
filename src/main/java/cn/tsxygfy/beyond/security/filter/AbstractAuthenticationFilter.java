@@ -53,6 +53,7 @@ public abstract class AbstractAuthenticationFilter extends OncePerRequestFilter 
         try {
             doAuthenticate(request, response, filterChain);
         } finally {
+            // ???
             SecurityContextHolder.clearContext();
         }
     }

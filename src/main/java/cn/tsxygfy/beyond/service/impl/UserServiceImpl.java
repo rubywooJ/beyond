@@ -2,7 +2,9 @@ package cn.tsxygfy.beyond.service.impl;
 
 import cn.tsxygfy.beyond.cache.store.InMemoryCacheStore;
 import cn.tsxygfy.beyond.exception.NotFoundException;
+import cn.tsxygfy.beyond.exception.NotMatchException;
 import cn.tsxygfy.beyond.mapper.UserMapper;
+import cn.tsxygfy.beyond.model.dto.ModifyPasswordParam;
 import cn.tsxygfy.beyond.model.dto.UserInfo;
 import cn.tsxygfy.beyond.model.po.User;
 import cn.tsxygfy.beyond.service.UserService;
@@ -87,5 +89,21 @@ public class UserServiceImpl implements UserService {
             throw new NotFoundException("No user exist.");
         }
         return new UserInfo(user.get());
+    }
+
+    @Override
+    public void modifyPassword(ModifyPasswordParam param) {
+        // 对比原密码
+        String oldPassword = param.getOldPassword();
+        User user = getCurrentUser().orElseThrow(() -> new NotFoundException("Current user not found."));
+        if (!passwordMatch(user, oldPassword)) {
+            throw new NotMatchException("Old password not match.").setErrorData(param.getOldPassword());
+        }
+        // 修改密码
+        String newPassword = DigestUtils.md5DigestAsHex(param.getNewPassword().getBytes());
+        user.setPassword(newPassword);
+        userMapper.updateByPrimaryKey(user);
+        // 使token失效
+        inMemoryCacheStore.preDestroy();
     }
 }

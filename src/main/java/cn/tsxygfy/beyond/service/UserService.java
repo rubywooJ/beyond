@@ -1,5 +1,6 @@
 package cn.tsxygfy.beyond.service;
 
+import cn.tsxygfy.beyond.model.dto.ModifyPasswordParam;
 import cn.tsxygfy.beyond.model.dto.UserInfo;
 import cn.tsxygfy.beyond.model.po.User;
 
@@ -32,4 +33,6 @@ public interface UserService {
     User getById(Long userId);
 
     UserInfo getUserInfo();
+
+    void modifyPassword(ModifyPasswordParam param);
 }

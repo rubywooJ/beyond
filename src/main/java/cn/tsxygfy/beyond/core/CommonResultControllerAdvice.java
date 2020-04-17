@@ -64,9 +64,15 @@ public class CommonResultControllerAdvice implements ResponseBodyAdvice<Object> 
         }
 
         // 包装返回
-        BaseResponse<?> baseResponse = BaseResponse.ok(returnBody);
-        bodyContainer.setValue(baseResponse);
-        response.setStatusCode(HttpStatus.valueOf(baseResponse.getStatus()));
+        if (returnBody != null) {
+            BaseResponse<?> baseResponse = BaseResponse.ok(returnBody);
+            bodyContainer.setValue(baseResponse);
+            response.setStatusCode(HttpStatus.valueOf(baseResponse.getStatus()));
+        } else {//controller 返回 void
+            BaseResponse<?> baseResponse = BaseResponse.ok(null);
+            bodyContainer.setValue(baseResponse);
+            response.setStatusCode(HttpStatus.valueOf(baseResponse.getStatus()));
+        }
     }
 
 }
