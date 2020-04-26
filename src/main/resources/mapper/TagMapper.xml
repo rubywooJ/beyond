@@ -31,7 +31,7 @@
     from tb_tag
   </select>
   <select id="selectByArticleId" parameterType="java.lang.Long" resultMap="BaseResultMap">
-    select tb_tag.id, name
+    select distinct tb_tag.id, name
     from tb_tag, tb_article_tags
     where article_id=#{id,jdbcType=BIGINT} and tag_id = tb_tag.id
   </select>

@@ -164,7 +164,9 @@ public class ArticleServiceImpl implements ArticleService {
         final Long _id = id;
 
         // 插入中间表
-        tags.forEach(tag -> articleMapper.insertArticleTag(_id, tag.getId()));
+        tags.forEach(tag -> {
+            articleMapper.insertArticleTagIfNotExistElseUpdate(_id, tag.getId());
+        });
 
         return articleTagsVO;
     }

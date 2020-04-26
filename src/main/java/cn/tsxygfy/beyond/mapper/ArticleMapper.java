@@ -45,7 +45,7 @@ public interface ArticleMapper {
      * @param articleId
      * @param tagId
      */
-    void insertArticleTag(@Param("articleId") Long articleId, @Param("tagId") Long tagId);
+    void insertArticleTagIfNotExistElseUpdate(@Param("articleId") Long articleId, @Param("tagId") Long tagId);
 
 
     /**
