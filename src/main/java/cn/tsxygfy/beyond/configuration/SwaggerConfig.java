@@ -43,7 +43,7 @@ public class SwaggerConfig {
                 .title("BEYOND API")
                 .description("beyond博客api文档")
                 .contact(new Contact("ruby woo", "https://www.tsxygfy.cn", "i520gfy@gmail.com"))
-                .version("1.0.0")
+                .version(BeyondConst.BEYOND_VERSION)
                 .build();
     }
 }
