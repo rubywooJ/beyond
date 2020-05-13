@@ -106,16 +106,7 @@
       where tt.name = #{name,jdbcType=VARCHAR} and tt.id = tat.tag_id and tat.article_id = ta.id
   </select>
   <insert id="insertArticleTagIfNotExistElseUpdate">
-      insert into tb_article_tags (article_id, tag_id)
-        select #{articleId,jdbcType=BIGINT}, #{tagId,jdbcType=BIGINT}
-        from dual
-        where not exists (
-          select article_id, tag_id
-          from tb_article_tags
-          where article_id = #{articleId,jdbcType=BIGINT} and tag_id=#{tagId,jdbcType=BIGINT}
-          );
-        update tb_article_tags set tag_id = #{tagId,jdbcType=BIGINT}
-          where article_id = #{articleId,jdbcType=BIGINT} and tag_id=#{tagId,jdbcType=BIGINT}
+      insert into tb_article_tags (article_id, tag_id) values (#{articleId,jdbcType=BIGINT}, #{tagId,jdbcType=BIGINT})
   </insert>
   <delete id="deleteArticleTagByArticleId" parameterType="java.lang.Long">
       delete from tb_article_tags where article_id = #{articleId,jdbcType=BIGINT}

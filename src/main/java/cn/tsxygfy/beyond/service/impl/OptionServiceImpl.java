@@ -42,7 +42,7 @@ public class OptionServiceImpl implements OptionService {
         String serverPort = applicationContext.getEnvironment().getProperty("server.port", "8080");
         String baseUrl;
         if (StringUtils.hasText(domain)) {
-            baseUrl = String.format("http://%s", domain);
+            baseUrl = domain;
         } else {
             baseUrl = String.format("http://%s:%s", IpUtil.getMachineIp(), serverPort);
         }

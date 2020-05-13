@@ -2,7 +2,7 @@ spring:
   freemarker:
     cache: true
   datasource:
-    url: jdbc:mysql://localhost:3306/blog?useUnicode=true&characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://localhost:3306/blog?useUnicode=true&characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true&allowMultiQueries=true
     username: root
     password: 123456
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -12,4 +12,4 @@ logging:
   # file: ./log/beyond-log.log
 # 设置域名
 #beyond:
-#  domain: www.tsxygfy.cn
+#  domain: https://www.tsxygfy.cn
